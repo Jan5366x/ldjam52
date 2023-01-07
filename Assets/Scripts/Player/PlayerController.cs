@@ -16,6 +16,9 @@ public class PlayerController : MonoBehaviour
     public float timeSinceLastJump;
     public float timeSinceLastLand;
 
+    public const float maxSpeedX = 7;
+    public const float maxSpeedY = 9;
+
     public enum State
     {
         IDLE,
@@ -66,6 +69,7 @@ public class PlayerController : MonoBehaviour
                 {
                     state = State.WALK;
                 }
+                GetComponent<SpriteRenderer>().flipX = false;
             }
             else if (Input.GetAxis("Horizontal") < -0.01)
             {
@@ -76,15 +80,17 @@ public class PlayerController : MonoBehaviour
                 {
                     state = State.WALK;
                 }
+                GetComponent<SpriteRenderer>().flipX = true;
             }
             else
             {
                 accelleration.x = 0;
+                velocity.y = -1;
             }
 
             if (Input.GetButton("Jump") && timeSinceLastJump > 0.25)
             {
-                accelleration.y = 300;
+                accelleration.y = 450;
                 velocity.y = 0;
                 idle = false;
                 state = State.JUMP;
@@ -116,9 +122,8 @@ public class PlayerController : MonoBehaviour
         {
             velocity.x = 0;
         }
-        velocity.y = Mathf.Clamp(velocity.y + accelleration.y * Time.deltaTime, -5, 5);
-       
-
+        velocity.x = Mathf.Clamp(velocity.x, -maxSpeedX, maxSpeedX);
+        velocity.y = Mathf.Clamp(velocity.y + accelleration.y * Time.deltaTime, (touchesGroundAtStart ) ? -1 : -maxSpeedY, maxSpeedY);
 
         var plannedMovement = velocity * Time.deltaTime;
 
@@ -132,8 +137,8 @@ public class PlayerController : MonoBehaviour
 
         var distanceGroundBack = Vector2.Distance(legBackCenter, groundBack);
         var distanceGroundFront = Vector2.Distance(legFrontCenter, groundFront);
-        
-        
+
+
         bool landing = false;
         var targetPositionBack = legBackCenter + plannedMovement;
         
@@ -173,13 +178,20 @@ public class PlayerController : MonoBehaviour
 
         Debug.DrawLine(targetPositionBack, groundBack, Color.green);
         Debug.DrawLine(targetPositionFront, groundFront, Color.blue);
-
+        
 
         bool hasGroundBelow = groundBack.sqrMagnitude > 0.001f && groundFront.sqrMagnitude > 0.001f;
 
         if (hasGroundBelow)
         {
             Vector2 position = Vector2.Lerp(targetPositionFront, targetPositionBack, 0.5f);
+            // Prevent glitching back up cliffs
+            if (targetPositionFront.y > legFrontCenter.y + 1 || targetPositionBack.y > legBackCenter.y + 1)
+            {
+                return ;
+                //position = transform.position;
+            }
+            
             float angle = Mathf.Atan2(groundFront.y - groundBack.y,
                 groundFront.x - groundBack.x);
 
@@ -189,8 +201,6 @@ public class PlayerController : MonoBehaviour
             {
                 angle = Mathf.Rad2Deg * angle;
             }
-
-            Debug.Log(angle);
 
             if (angle < -70 || angle > 70)
             {
@@ -221,22 +231,22 @@ public class PlayerController : MonoBehaviour
 
     Vector2 GetGroundPosition(Vector2 pos)
     {
-        float minDistance = 99999;
-        Vector2? minObject = null;
+        float maxHeight = -99999;
+        Vector2? maxObject = null;
         foreach (var raycastHit2D in Physics2D.RaycastAll(new Vector2(pos.x, 99), Vector2.down))
         {
             if (raycastHit2D.transform.CompareTag("Scene"))
             {
-                float distance = Vector2.Distance(pos, raycastHit2D.point);
-                if (distance < minDistance)
+                float height = raycastHit2D.point.y;
+                if (height > maxHeight)
                 {
-                    minDistance = distance;
-                    minObject = raycastHit2D.point;
+                    maxHeight = height;
+                    maxObject = raycastHit2D.point;
                 }
             }
         }
 
-        return (minObject == null) ? Vector2.zero : minObject.Value;
+        return (maxObject == null) ? Vector2.zero : maxObject.Value;
     }
 
     Vector2 GetColliderCenter(Transform transform)
