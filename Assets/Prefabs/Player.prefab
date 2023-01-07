@@ -45,9 +45,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.26165572, y: 0.30130064}
+  m_Offset: {x: 0.26165572, y: 0.12549308}
   serializedVersion: 2
-  m_Radius: 0.1310656
+  m_Radius: 0.0928466
 --- !u!1 &3223936410471327179
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,9 +93,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.3039435, y: 0.2880856}
+  m_Offset: {x: -0.37273777, y: 0.14940509}
   serializedVersion: 2
-  m_Radius: 0.15242627
+  m_Radius: 0.12403501
 --- !u!1 &4672171983018001651
 GameObject:
   m_ObjectHideFlags: 0
@@ -174,7 +174,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 291657143, guid: 75f925ac05ba25244827c68923f08992, type: 3}
+  m_Sprite: {fileID: 723930549, guid: 75f925ac05ba25244827c68923f08992, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -238,6 +238,9 @@ MonoBehaviour:
   accelleration: {x: 0, y: 0}
   velocity: {x: 0, y: 0}
   timeSinceLastMove: 0
+  timeSinceLastJump: 0
+  timeSinceLastLand: 0
+  state: 0
 --- !u!1 &7517134776394154260
 GameObject:
   m_ObjectHideFlags: 0
