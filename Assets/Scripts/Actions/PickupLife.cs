@@ -26,7 +26,7 @@ public class PickupLife : MonoBehaviour
 
         if (col.tag?.Equals("player", System.StringComparison.OrdinalIgnoreCase) ?? false)
         {
-            GlobalVariables.playerLives += 1;
+            IncreaseLives();
             Debug.Log($"GlobalVariables.playerLives: {GlobalVariables.playerLives}");
 
             var afterEffect = Instantiate(afterEffectPrefab, transform.position, Quaternion.identity);
@@ -34,6 +34,12 @@ public class PickupLife : MonoBehaviour
 
             Destroy(gameObject);
         }
+    }
+
+    private static void IncreaseLives()
+    {
+        if (GlobalVariables.playerLives + 1 <= GlobalVariables.playerMaxLives)
+            GlobalVariables.playerLives++;
     }
 
     private void OnDestroy()

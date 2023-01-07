@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GlobalVariables : MonoBehaviour
 {
+    public static int playerMaxLives = 9;
+
     public static int playerLives = 1;
 
     // Start is called before the first frame update
