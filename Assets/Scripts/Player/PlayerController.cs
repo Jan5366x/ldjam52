@@ -8,12 +8,6 @@ using UnityEngine.Animations;
 public class PlayerController : MonoBehaviour
 {
 
-    public const String ANIM_IDLE = "Idle";
-    public const String ANIM_WALK = "Walk";
-    public const String ANIM_JUMP = "Jump";
-    public const String ANIM_FALLING = "Falling";
-    public const String ANIM_LANDING = "Landing";
-    
     public Transform legBack;
     public Transform legFront;
 
@@ -36,7 +30,13 @@ public class PlayerController : MonoBehaviour
         timeSinceLastMove += Time.deltaTime;
 
         var animator = GetComponent<Animator>();
-
+        AnimationHelper.SetParameter(animator, AnimationHelper.ANIM_IDLE, false);
+        AnimationHelper.SetParameter(animator, AnimationHelper.ANIM_WALK, false);
+        AnimationHelper.SetParameter(animator, AnimationHelper.ANIM_JUMP, false);
+        AnimationHelper.SetParameter(animator, AnimationHelper.ANIM_FALLING, false);
+        AnimationHelper.SetParameter(animator, AnimationHelper.ANIM_LANDING, false);
+        
+        
         bool idle = true;
         bool falling = false;
 
@@ -48,12 +48,14 @@ public class PlayerController : MonoBehaviour
                 accelleration.x = 10;
                 timeSinceLastMove = 0;
                 idle = false;
+                AnimationHelper.SetParameter(animator, AnimationHelper.ANIM_WALK, true);
             }
             else if (Input.GetAxis("Horizontal") < -0.01)
             {
                 accelleration.x = -10;
                 timeSinceLastMove = 0;
                 idle = false;
+                AnimationHelper.SetParameter(animator, AnimationHelper.ANIM_WALK, true);
             }
             else
             {
@@ -65,20 +67,15 @@ public class PlayerController : MonoBehaviour
                 accelleration.y = 300;
                 velocity.y = 0;
                 idle = false;
-                animator.SetTrigger(ANIM_JUMP);
+                AnimationHelper.SetParameter(animator, AnimationHelper.ANIM_JUMP, true);
             }
         }
         else
         {
             timeSinceLastMove = 0;
             falling = true;
-            animator.SetTrigger(ANIM_FALLING);
+            AnimationHelper.SetParameter(animator, AnimationHelper.ANIM_FALLING, true);
         }
-
-        if (idle)
-        {
-            animator.SetTrigger(ANIM_IDLE);
-        } 
 
         accelleration.y -= 10;
         velocity.x = touchesGroundAtStart
@@ -128,13 +125,13 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (landing)
+        if (landing && !touchesGroundAtStart)
         {
-            animator.SetTrigger(ANIM_LANDING);
+            AnimationHelper.SetParameter(animator, AnimationHelper.ANIM_LANDING, true);
+        } else if (idle)
+        {
+            AnimationHelper.SetParameter(animator, AnimationHelper.ANIM_IDLE, true);
         }
-
-
-        Debug.Log(plannedMovement.magnitude);
 
         Debug.DrawLine(targetPositionBack, groundBack, Color.green);
         Debug.DrawLine(targetPositionFront, groundFront, Color.blue);
@@ -152,6 +149,7 @@ public class PlayerController : MonoBehaviour
 
             angle = Mathf.Rad2Deg * angle;
 
+            
             if (angle < -45 || angle > 45)
             {
                 Debug.LogError("Flipped the cat");
