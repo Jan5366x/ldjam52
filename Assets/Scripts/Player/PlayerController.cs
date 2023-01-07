@@ -7,40 +7,57 @@ using UnityEngine.Animations;
 
 public class PlayerController : MonoBehaviour
 {
-
     public Transform legBack;
     public Transform legFront;
 
     public Vector2 accelleration;
     public Vector2 velocity;
     public float timeSinceLastMove;
+    public float timeSinceLastJump;
+    public float timeSinceLastLand;
+
+    public const float maxSpeedX = 7;
+    public const float maxSpeedY = 9;
+
+    public enum State
+    {
+        IDLE,
+        WALK,
+        JUMP,
+        FALLING,
+        LANDING
+    }
+
+    public State state;
 
     void Start()
     {
         legBack = transform.Find("LegBack");
         legFront = transform.Find("LegFront");
+        state = State.IDLE;
     }
 
     // Update is called once per frame
     void Update()
     {
-        var oldOffset = (Vector2) transform.position - Vector2.Lerp(legBack.position, legFront.position, 0.5f);
-        Debug.DrawLine(transform.position, transform.position - (Vector3) oldOffset);
+        var legBackCenter = GetColliderCenter(legBack);
+        var legFrontCenter = GetColliderCenter(legFront);
+        
+        var oldOffset = (Vector2) transform.position - Vector2.Lerp(legBackCenter, legFrontCenter, 0.5f);
+        Debug.DrawLine(transform.position, transform.position - (Vector3) oldOffset, Color.yellow);
         accelleration = Vector2.zero;
         timeSinceLastMove += Time.deltaTime;
+        timeSinceLastJump += Time.deltaTime;
+        timeSinceLastLand += Time.deltaTime;
 
         var animator = GetComponent<Animator>();
         AnimationHelper.SetParameter(animator, AnimationHelper.ANIM_IDLE, false);
         AnimationHelper.SetParameter(animator, AnimationHelper.ANIM_WALK, false);
-        AnimationHelper.SetParameter(animator, AnimationHelper.ANIM_JUMP, false);
-        AnimationHelper.SetParameter(animator, AnimationHelper.ANIM_FALLING, false);
-        AnimationHelper.SetParameter(animator, AnimationHelper.ANIM_LANDING, false);
-        
-        
+
         bool idle = true;
         bool falling = false;
 
-        var touchesGroundAtStart = touchesGround(legBack.position) || touchesGround(legFront.position);
+        var touchesGroundAtStart = touchesGround(legBackCenter) || touchesGround(legFrontCenter);
         if (touchesGroundAtStart)
         {
             if (Input.GetAxis("Horizontal") > 0.01)
@@ -48,33 +65,48 @@ public class PlayerController : MonoBehaviour
                 accelleration.x = 10;
                 timeSinceLastMove = 0;
                 idle = false;
-                AnimationHelper.SetParameter(animator, AnimationHelper.ANIM_WALK, true);
+                if (timeSinceLastLand > 0.25 && timeSinceLastJump > 0.25)
+                {
+                    state = State.WALK;
+                }
+                GetComponent<SpriteRenderer>().flipX = false;
             }
             else if (Input.GetAxis("Horizontal") < -0.01)
             {
                 accelleration.x = -10;
                 timeSinceLastMove = 0;
                 idle = false;
-                AnimationHelper.SetParameter(animator, AnimationHelper.ANIM_WALK, true);
+                if (timeSinceLastLand > 0.25)
+                {
+                    state = State.WALK;
+                }
+                GetComponent<SpriteRenderer>().flipX = true;
             }
             else
             {
                 accelleration.x = 0;
+                velocity.y = -1;
             }
 
-            if (Input.GetButton("Jump"))
+            if (Input.GetButton("Jump") && timeSinceLastJump > 0.25)
             {
-                accelleration.y = 300;
+                accelleration.y = 450;
                 velocity.y = 0;
                 idle = false;
-                AnimationHelper.SetParameter(animator, AnimationHelper.ANIM_JUMP, true);
+                state = State.JUMP;
+                timeSinceLastJump = 0;
             }
         }
         else
         {
             timeSinceLastMove = 0;
             falling = true;
-            AnimationHelper.SetParameter(animator, AnimationHelper.ANIM_FALLING, true);
+            idle = false;
+            if (timeSinceLastJump > 0.25 && timeSinceLastLand > 0.25)
+            {
+                state = State.FALLING;
+            }
+
         }
 
         accelleration.y -= 10;
@@ -90,22 +122,26 @@ public class PlayerController : MonoBehaviour
         {
             velocity.x = 0;
         }
-
-        velocity.y = velocity.y + accelleration.y * Time.deltaTime;
-
+        velocity.x = Mathf.Clamp(velocity.x, -maxSpeedX, maxSpeedX);
+        velocity.y = Mathf.Clamp(velocity.y + accelleration.y * Time.deltaTime, (touchesGroundAtStart ) ? -1 : -maxSpeedY, maxSpeedY);
 
         var plannedMovement = velocity * Time.deltaTime;
 
         Debug.DrawLine(transform.position, transform.position + (Vector3) velocity, Color.red);
 
-        Vector2 groundBack = GetGroundPosition((Vector2) legBack.position + plannedMovement);
-        Vector2 groundFront = GetGroundPosition((Vector2) legFront.position + plannedMovement);
+        Vector2 groundBack = GetGroundPosition(legBackCenter + plannedMovement);
+        Vector2 groundFront = GetGroundPosition(legFrontCenter + plannedMovement);
 
         Debug.DrawLine(transform.position, groundBack, Color.green);
         Debug.DrawLine(transform.position, groundFront, Color.blue);
 
+        var distanceGroundBack = Vector2.Distance(legBackCenter, groundBack);
+        var distanceGroundFront = Vector2.Distance(legFrontCenter, groundFront);
+
+
         bool landing = false;
-        var targetPositionBack = (Vector2) legBack.position + plannedMovement;
+        var targetPositionBack = legBackCenter + plannedMovement;
+        
         if (targetPositionBack.y < groundBack.y)
         {
             targetPositionBack.y = groundBack.y;
@@ -115,7 +151,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        var targetPositionFront = (Vector2) legFront.position + plannedMovement;
+        var targetPositionFront = legFrontCenter + plannedMovement;
         if (targetPositionFront.y < groundFront.y)
         {
             targetPositionFront.y = groundFront.y;
@@ -125,47 +161,58 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (landing && !touchesGroundAtStart)
+        if ((landing && !touchesGroundAtStart) || (idle && state == State.FALLING))
         {
-            AnimationHelper.SetParameter(animator, AnimationHelper.ANIM_LANDING, true);
-        } else if (idle)
-        {
-            AnimationHelper.SetParameter(animator, AnimationHelper.ANIM_IDLE, true);
+            state = State.LANDING;
+            timeSinceLastLand = 0;
         }
+        else if (idle)
+        {
+            if (timeSinceLastLand > 0.25 && timeSinceLastJump > 0.25)
+            {
+                state = State.IDLE;
+            }
+        }
+        
+        AnimationHelper.SetParameter(animator, "state", (int) state);
 
         Debug.DrawLine(targetPositionBack, groundBack, Color.green);
         Debug.DrawLine(targetPositionFront, groundFront, Color.blue);
-
+        
 
         bool hasGroundBelow = groundBack.sqrMagnitude > 0.001f && groundFront.sqrMagnitude > 0.001f;
 
         if (hasGroundBelow)
         {
             Vector2 position = Vector2.Lerp(targetPositionFront, targetPositionBack, 0.5f);
-            float angle = Mathf.Atan2(targetPositionFront.y - targetPositionBack.y,
-                targetPositionFront.x - targetPositionBack.x);
+            // Prevent glitching back up cliffs
+            if (targetPositionFront.y > legFrontCenter.y + 1 || targetPositionBack.y > legBackCenter.y + 1)
+            {
+                return ;
+                //position = transform.position;
+            }
+            
+            float angle = Mathf.Atan2(groundFront.y - groundBack.y,
+                groundFront.x - groundBack.x);
 
             Debug.DrawLine(position, position + new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)), Color.magenta);
 
-            angle = Mathf.Rad2Deg * angle;
+            if (distanceGroundBack < 1 && distanceGroundFront < 1)
+            {
+                angle = Mathf.Rad2Deg * angle;
+            }
 
-            
-            if (angle < -45 || angle > 45)
+            if (angle < -70 || angle > 70)
             {
                 Debug.LogError("Flipped the cat");
             }
-            else
-            {
                 transform.SetPositionAndRotation((Vector2) position + oldOffset,
                     Quaternion.AngleAxis(angle, Vector3.forward));
-            }
         }
         else
         {
             transform.SetPositionAndRotation((Vector2) transform.position + plannedMovement, Quaternion.identity);
         }
-        
-        
     }
 
 
@@ -184,21 +231,26 @@ public class PlayerController : MonoBehaviour
 
     Vector2 GetGroundPosition(Vector2 pos)
     {
-        float minDistance = 99999;
-        Vector2? minObject = null;
+        float maxHeight = -99999;
+        Vector2? maxObject = null;
         foreach (var raycastHit2D in Physics2D.RaycastAll(new Vector2(pos.x, 99), Vector2.down))
         {
             if (raycastHit2D.transform.CompareTag("Scene"))
             {
-                float distance = Vector2.Distance(pos, raycastHit2D.point);
-                if (distance < minDistance)
+                float height = raycastHit2D.point.y;
+                if (height > maxHeight)
                 {
-                    minDistance = distance;
-                    minObject = raycastHit2D.point;
+                    maxHeight = height;
+                    maxObject = raycastHit2D.point;
                 }
             }
         }
 
-        return (minObject == null) ? Vector2.zero : minObject.Value;
+        return (maxObject == null) ? Vector2.zero : maxObject.Value;
+    }
+
+    Vector2 GetColliderCenter(Transform transform)
+    {
+        return (Vector2) transform.GetComponent<Collider2D>().bounds.center;
     }
 }
