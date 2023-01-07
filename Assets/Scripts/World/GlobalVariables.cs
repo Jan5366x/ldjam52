@@ -8,6 +8,8 @@ public class GlobalVariables : MonoBehaviour
 
     public static int playerLives = 1;
 
+    public static World world = World.Main;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,5 +20,10 @@ public class GlobalVariables : MonoBehaviour
     void Update()
     {
         
+    }
+    public enum World
+    {
+        Main,
+        UpsideDown
     }
 }
