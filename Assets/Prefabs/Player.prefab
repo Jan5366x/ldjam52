@@ -108,6 +108,7 @@ GameObject:
   - component: {fileID: 4672171983018001650}
   - component: {fileID: 1252267403063569273}
   - component: {fileID: 8427417270943010480}
+  - component: {fileID: 4168720913174702743}
   m_Layer: 0
   m_Name: gray_cat
   m_TagString: Untagged
@@ -214,7 +215,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   legBack: {fileID: 5627370957092628836}
   legFront: {fileID: 5770032104764656165}
+  accelleration: {x: 0, y: 0}
   velocity: {x: 0, y: 0}
+  timeSinceLastMove: 0
+--- !u!95 &4168720913174702743
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4672171983018001651}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &7517134776394154260
 GameObject:
   m_ObjectHideFlags: 0
