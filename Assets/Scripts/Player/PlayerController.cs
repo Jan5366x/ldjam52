@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,6 +7,13 @@ using UnityEngine.Animations;
 
 public class PlayerController : MonoBehaviour
 {
+
+    public const String ANIM_IDLE = "Idle";
+    public const String ANIM_WALK = "Walk";
+    public const String ANIM_JUMP = "Jump";
+    public const String ANIM_FALLING = "Falling";
+    public const String ANIM_LANDING = "Landing";
+    
     public Transform legBack;
     public Transform legFront;
 
@@ -26,6 +34,12 @@ public class PlayerController : MonoBehaviour
         Debug.DrawLine(transform.position, transform.position - (Vector3) oldOffset);
         accelleration = Vector2.zero;
         timeSinceLastMove += Time.deltaTime;
+
+        var animator = GetComponent<Animator>();
+
+        bool idle = true;
+        bool falling = false;
+
         var touchesGroundAtStart = touchesGround(legBack.position) || touchesGround(legFront.position);
         if (touchesGroundAtStart)
         {
@@ -33,11 +47,13 @@ public class PlayerController : MonoBehaviour
             {
                 accelleration.x = 10;
                 timeSinceLastMove = 0;
+                idle = false;
             }
             else if (Input.GetAxis("Horizontal") < -0.01)
             {
                 accelleration.x = -10;
                 timeSinceLastMove = 0;
+                idle = false;
             }
             else
             {
@@ -48,12 +64,21 @@ public class PlayerController : MonoBehaviour
             {
                 accelleration.y = 300;
                 velocity.y = 0;
+                idle = false;
+                animator.SetTrigger(ANIM_JUMP);
             }
         }
         else
         {
             timeSinceLastMove = 0;
+            falling = true;
+            animator.SetTrigger(ANIM_FALLING);
         }
+
+        if (idle)
+        {
+            animator.SetTrigger(ANIM_IDLE);
+        } 
 
         accelleration.y -= 10;
         velocity.x = touchesGroundAtStart
@@ -82,18 +107,30 @@ public class PlayerController : MonoBehaviour
         Debug.DrawLine(transform.position, groundBack, Color.green);
         Debug.DrawLine(transform.position, groundFront, Color.blue);
 
-        var resultingMovementBack = Vector2.Distance(legBack.position, groundBack);
-        var resultingMovementFront = Vector2.Distance(legFront.position, groundFront);
+        bool landing = false;
         var targetPositionBack = (Vector2) legBack.position + plannedMovement;
         if (targetPositionBack.y < groundBack.y)
         {
             targetPositionBack.y = groundBack.y;
+            if (falling)
+            {
+                landing = true;
+            }
         }
 
         var targetPositionFront = (Vector2) legFront.position + plannedMovement;
         if (targetPositionFront.y < groundFront.y)
         {
             targetPositionFront.y = groundFront.y;
+            if (falling)
+            {
+                landing = true;
+            }
+        }
+
+        if (landing)
+        {
+            animator.SetTrigger(ANIM_LANDING);
         }
 
 
@@ -129,6 +166,8 @@ public class PlayerController : MonoBehaviour
         {
             transform.SetPositionAndRotation((Vector2) transform.position + plannedMovement, Quaternion.identity);
         }
+        
+        
     }
 
 
