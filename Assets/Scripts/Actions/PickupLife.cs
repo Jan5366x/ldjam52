@@ -1,10 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.U2D;
 
 public class PickupLife : MonoBehaviour
 {
+    public GameObject afterEffectPrefab;
+
+    public float afterEffectDuration = 1;
+
     void Start()
     {
 
@@ -23,6 +28,15 @@ public class PickupLife : MonoBehaviour
         {
             GlobalVariables.playerLives += 1;
             Debug.Log($"GlobalVariables.playerLives: {GlobalVariables.playerLives}");
+
+            var afterEffect = Instantiate(afterEffectPrefab, transform.position, Quaternion.identity);
+            Destroy(afterEffect, afterEffectDuration);
+
+            Destroy(gameObject);
         }
+    }
+
+    private void OnDestroy()
+    {
     }
 }
