@@ -3,6 +3,13 @@ using UnityEngine;
 
 public class AnimationHelper
 {
+    
+    public const String ANIM_IDLE = "Idle";
+    public const String ANIM_WALK = "Walk";
+    public const String ANIM_JUMP = "Jump";
+    public const String ANIM_FALLING = "Falling";
+    public const String ANIM_LANDING = "Landing";
+    
     public static bool HasParameter(Animator animator, String parameter)
     {
         if (!animator)
@@ -30,6 +37,8 @@ public class AnimationHelper
 
         if (!HasParameter(animator, parameter)) return;
 
+        Debug.Log(parameter + value);
+
         animator.SetBool(parameter, value);
     }
 
@@ -55,5 +64,23 @@ public class AnimationHelper
         if (!HasParameter(animator, parameter)) return;
 
         animator.SetInteger(parameter, value);
+    }
+    
+    public static void Trigger(Animator animator, String parameter)
+    {
+        if (!animator)
+        {
+            return;
+        }
+
+        if (!HasParameter(animator, parameter)) return;
+        
+        animator.ResetTrigger(ANIM_IDLE);
+        animator.ResetTrigger(ANIM_WALK);
+        animator.ResetTrigger(ANIM_JUMP);
+        animator.ResetTrigger(ANIM_FALLING);
+        animator.ResetTrigger(ANIM_LANDING);
+
+        animator.SetTrigger(parameter);
     }
 }
