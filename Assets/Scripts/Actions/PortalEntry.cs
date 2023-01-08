@@ -9,16 +9,16 @@ namespace Actions
     public class PortalEntry : MonoBehaviour
     {
         public GlobalVariables.World nextWorld = GlobalVariables.World.OtherDimention;
-    
+
         [AllowsNull]
         public string nextSceneName;
 
         [AllowsNull]
         public GameObject afterEffectPrefab;
-        
+
         private SpriteRenderer _render;
         private Collider2D _collider;
-        
+
         void Start()
         {
             _render = GetComponent<SpriteRenderer>();
@@ -40,8 +40,13 @@ namespace Actions
         {
             //Debug.Log($"Collision detected with {col.gameObject.name} (tag:{col.tag}) by {gameObject.name}");
 
-            if (col.tag?.Equals("player", StringComparison.OrdinalIgnoreCase) ?? false)
+            if ((col.tag?.Equals("player", StringComparison.OrdinalIgnoreCase) ?? false))
             {
+                if (GlobalVariables.IsLevelCompletedNextLevel() && !string.IsNullOrWhiteSpace(nextSceneName))
+                {
+                    Debug.Log($"Level is not completed.");
+                }
+
                 GlobalVariables.world = nextWorld;
                 //Debug.Log($"GlobalVariables.world: {GlobalVariables.world}");
 
@@ -55,7 +60,7 @@ namespace Actions
                 gameObject.SetActive(false);
             }
         }
-    
+
         IEnumerator LoadNextSceneAsync()
         {
             //Debug.Log($"Loading next scene: {nextSceneName}");
