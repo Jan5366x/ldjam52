@@ -63,6 +63,8 @@ public class PlayerController : MonoBehaviour
             angle = 0;
         }
 
+        angle = Mathf.Clamp(angle, -45, 45);
+        
         transform.rotation = Quaternion.AngleAxis(Mathf.Rad2Deg * angle, Vector3.forward);
 
         touchesGroundAtStart = touchesGround(legBackCenter) || touchesGround(legFrontCenter);
