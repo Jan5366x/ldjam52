@@ -226,6 +226,7 @@ MonoBehaviour:
   timeSinceLastJump: 0
   timeSinceLastLand: 0
   touchesGroundAtStart: 0
+  prevAngle: 0
   state: 0
 --- !u!50 &9004799542970955506
 Rigidbody2D:
@@ -309,7 +310,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
+  m_BackGroundColor: {r: 0.4764151, g: 0.84840244, b: 1, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0

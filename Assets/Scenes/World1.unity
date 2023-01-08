@@ -3366,7 +3366,7 @@ PrefabInstance:
       objectReference: {fileID: -609524830, guid: f0d37162bbf6fa7468b901e52753de94, type: 3}
     - target: {fileID: 6215456722233446255, guid: ce1803f7d47a68241b4c0b011e59b369, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7919468
+      value: 0.7112547
       objectReference: {fileID: 0}
     - target: {fileID: 6215456722233446255, guid: ce1803f7d47a68241b4c0b011e59b369, type: 3}
       propertyPath: m_LocalRotation.x
@@ -3378,7 +3378,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6215456722233446255, guid: ce1803f7d47a68241b4c0b011e59b369, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.6105901
+      value: 0.70293444
       objectReference: {fileID: 0}
     - target: {fileID: 6215456723054330376, guid: ce1803f7d47a68241b4c0b011e59b369, type: 3}
       propertyPath: m_Name
@@ -3438,7 +3438,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6215456723145704656, guid: ce1803f7d47a68241b4c0b011e59b369, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.792261
+      value: 0.7113776
       objectReference: {fileID: 0}
     - target: {fileID: 6215456723145704656, guid: ce1803f7d47a68241b4c0b011e59b369, type: 3}
       propertyPath: m_LocalRotation.x
@@ -3450,7 +3450,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6215456723145704656, guid: ce1803f7d47a68241b4c0b011e59b369, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.61018234
+      value: 0.70281005
       objectReference: {fileID: 0}
     - target: {fileID: 6215456723145704658, guid: ce1803f7d47a68241b4c0b011e59b369, type: 3}
       propertyPath: m_Sprite
@@ -3794,18 +3794,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6823630128691902126, guid: 710d139003d9bc68fbb55301a0219ee0, type: 3}
-      propertyPath: m_BackGroundColor.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6823630128691902126, guid: 710d139003d9bc68fbb55301a0219ee0, type: 3}
-      propertyPath: m_BackGroundColor.g
-      value: 0.84840244
-      objectReference: {fileID: 0}
-    - target: {fileID: 6823630128691902126, guid: 710d139003d9bc68fbb55301a0219ee0, type: 3}
-      propertyPath: m_BackGroundColor.r
-      value: 0.4764151
-      objectReference: {fileID: 0}
     - target: {fileID: 7517134776394154260, guid: 710d139003d9bc68fbb55301a0219ee0, type: 3}
       propertyPath: m_Name
       value: Player
@@ -3820,7 +3808,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9079801233473807070, guid: 710d139003d9bc68fbb55301a0219ee0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 16.209452
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 9079801233473807070, guid: 710d139003d9bc68fbb55301a0219ee0, type: 3}
       propertyPath: m_LocalPosition.z
