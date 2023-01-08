@@ -1,9 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.Animations;
 
 public class PlayerController : MonoBehaviour
 {
@@ -16,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public float timeSinceLastJump;
     public float timeSinceLastLand;
     public bool touchesGroundAtStart;
+    public float prevAngle;
 
     public const float maxSpeedX = 9;
     public const float maxSpeedY = 9;
@@ -63,9 +59,16 @@ public class PlayerController : MonoBehaviour
             angle = 0;
         }
 
+        angle *= Mathf.Rad2Deg;
+
         angle = Mathf.Clamp(angle, -45, 45);
-        
-        transform.rotation = Quaternion.AngleAxis(Mathf.Rad2Deg * angle, Vector3.forward);
+
+        if (Mathf.Abs(angle - prevAngle) > 10)
+        {
+            angle = Mathf.LerpAngle(prevAngle, angle, 0.1f);
+        }
+
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
         touchesGroundAtStart = touchesGround(legBackCenter) || touchesGround(legFrontCenter);
 
@@ -77,6 +80,7 @@ public class PlayerController : MonoBehaviour
                 state = State.LANDING;
                 timeSinceLastLand = 0;
             }
+
             if (Input.GetAxis("Horizontal") > 0.01)
             {
                 accelleration.x = 10;
@@ -90,7 +94,8 @@ public class PlayerController : MonoBehaviour
                 GetComponent<SpriteRenderer>().flipX = false;
                 if (Mathf.Abs(rigidBody.velocity.x) < maxSpeedX)
                 {
-                    rigidBody.AddForce(new Vector2(20 * Mathf.Cos(angle), 20 * Mathf.Sin(angle)));
+                    rigidBody.AddForce(new Vector2(20 * Mathf.Cos(Mathf.Deg2Rad * angle),
+                        20 * Mathf.Sin(Mathf.Deg2Rad * angle)));
                 }
             }
             else if (Input.GetAxis("Horizontal") < -0.01)
@@ -106,7 +111,8 @@ public class PlayerController : MonoBehaviour
                 GetComponent<SpriteRenderer>().flipX = true;
                 if (Mathf.Abs(rigidBody.velocity.x) < maxSpeedX)
                 {
-                    rigidBody.AddForce(new Vector2(-20 * Mathf.Cos(angle), -20 * Mathf.Sin(angle)));
+                    rigidBody.AddForce(new Vector2(-20 * Mathf.Cos(Mathf.Deg2Rad * angle),
+                        -20 * Mathf.Sin(Mathf.Deg2Rad * angle)));
                 }
             }
             else
@@ -141,9 +147,9 @@ public class PlayerController : MonoBehaviour
 
         if (idle && !falling && timeSinceLastMove > 0.25 && timeSinceLastJump > 0.25 && timeSinceLastLand > 0.25)
         {
-            state = State.IDLE; 
+            state = State.IDLE;
         }
-        
+
         var animator = GetComponent<Animator>();
         AnimationHelper.SetParameter(animator, "state", (int) state);
 
