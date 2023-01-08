@@ -2,8 +2,11 @@ using UnityEngine;
 
 public class KillZone : MonoBehaviour
 {
-    public void OnTriggerEnter2D()
+    void OnTriggerEnter2D(Collider2D col)
     {
-        //Deathscreen   
+        if (col.CompareTag("Player"))
+        {
+            //Deathscreen   
+        }
     }
 }
