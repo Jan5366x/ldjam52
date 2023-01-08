@@ -106,12 +106,12 @@ GameObject:
   m_Component:
   - component: {fileID: 4672171983018001653}
   - component: {fileID: 4672171983018001650}
-  - component: {fileID: 1252267403063569273}
   - component: {fileID: 4168720913174702743}
   - component: {fileID: 8216203593882270474}
+  - component: {fileID: 9004799542970955506}
   m_Layer: 0
   m_Name: gray_cat
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -185,22 +185,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!70 &1252267403063569273
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4672171983018001651}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.08743532, y: 0.55549043}
-  m_Size: {x: 1.0397396, y: 0.48471135}
-  m_Direction: 1
 --- !u!95 &4168720913174702743
 Animator:
   serializedVersion: 5
@@ -240,7 +224,29 @@ MonoBehaviour:
   timeSinceLastMove: 0
   timeSinceLastJump: 0
   timeSinceLastLand: 0
+  touchesGroundAtStart: 0
   state: 0
+--- !u!50 &9004799542970955506
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4672171983018001651}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0.95
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &6813831756401363154
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,24 +347,24 @@ MonoBehaviour:
   player: {fileID: 4672171983018001651}
   nothingEdge:
     serializedVersion: 2
+    x: 0.45
+    y: 0.45
+    width: 0.1
+    height: 0.1
+  softEdge:
+    serializedVersion: 2
     x: 0.4
     y: 0.4
     width: 0.2
     height: 0.2
-  softEdge:
-    serializedVersion: 2
-    x: 0.3
-    y: 0.3
-    width: 0.4
-    height: 0.4
   hardEdge:
     serializedVersion: 2
-    x: 0.1
-    y: 0.1
-    width: 0.8
-    height: 0.8
-  speedSoft: 8
-  speedHard: 20
+    x: 0.2
+    y: 0.2
+    width: 0.6
+    height: 0.7
+  speedSoft: 10
+  speedHard: 50
   speed: 0
   dir: {x: 0, y: 0}
 --- !u!1 &7517134776394154260
@@ -370,9 +376,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9079801233473807070}
+  - component: {fileID: 2500745961723062838}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -394,3 +401,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &2500745961723062838
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7517134776394154260}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.27}
+  m_Size: {x: 1.17, y: 0.55}
+  m_Direction: 1

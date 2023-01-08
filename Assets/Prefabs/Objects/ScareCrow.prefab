@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6215456722233446255}
   - component: {fileID: 6215456722233446249}
   - component: {fileID: 6215456722233446254}
+  - component: {fileID: 5915234448779520961}
   m_Layer: 0
   m_Name: ScareCrow_RightEye
   m_TagString: Untagged
@@ -25,8 +26,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6215456722233446252}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.078, y: 2.806, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.5280102, w: 0.84923804}
+  m_LocalPosition: {x: 0.07, y: 2.827, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -74,12 +75,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -609524830, guid: f0d37162bbf6fa7468b901e52753de94, type: 3}
+  m_Sprite: {fileID: 400008140, guid: f0d37162bbf6fa7468b901e52753de94, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.1, y: 0.11}
+  m_Size: {x: 0.12, y: 0.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -97,6 +98,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb0e956c6b3cb2b40b78a1895b7e892a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5915234448779520961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6215456722233446252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76a7b969281382e4abb503f7381ef83d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalSprite: {fileID: -609524830, guid: f0d37162bbf6fa7468b901e52753de94, type: 3}
+  otherWorldSprite: {fileID: 400008140, guid: f0d37162bbf6fa7468b901e52753de94, type: 3}
 --- !u!1 &6215456723054330376
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,6 +122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6215456723054330379}
   - component: {fileID: 6215456723054330378}
+  - component: {fileID: -3483751925135319748}
   m_Layer: 0
   m_Name: ScareCrow
   m_TagString: Untagged
@@ -172,7 +188,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1346286816, guid: f0d37162bbf6fa7468b901e52753de94, type: 3}
+  m_Sprite: {fileID: -1243953995, guid: f0d37162bbf6fa7468b901e52753de94, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -183,6 +199,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-3483751925135319748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6215456723054330376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76a7b969281382e4abb503f7381ef83d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalSprite: {fileID: -1346286816, guid: f0d37162bbf6fa7468b901e52753de94, type: 3}
+  otherWorldSprite: {fileID: -1243953995, guid: f0d37162bbf6fa7468b901e52753de94, type: 3}
 --- !u!1 &6215456723145704657
 GameObject:
   m_ObjectHideFlags: 0
@@ -194,6 +224,7 @@ GameObject:
   - component: {fileID: 6215456723145704656}
   - component: {fileID: 6215456723145704658}
   - component: {fileID: 6215456723145704659}
+  - component: {fileID: 6734170082282264231}
   m_Layer: 0
   m_Name: ScareCrow_LeftEye
   m_TagString: Untagged
@@ -208,8 +239,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6215456723145704657}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.055, y: 2.799, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.52706796, w: 0.8498232}
+  m_LocalPosition: {x: -0.063, y: 2.813, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -257,12 +288,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -609524830, guid: f0d37162bbf6fa7468b901e52753de94, type: 3}
+  m_Sprite: {fileID: 400008140, guid: f0d37162bbf6fa7468b901e52753de94, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.1, y: 0.11}
+  m_Size: {x: 0.12, y: 0.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -280,3 +311,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb0e956c6b3cb2b40b78a1895b7e892a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6734170082282264231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6215456723145704657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76a7b969281382e4abb503f7381ef83d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalSprite: {fileID: -609524830, guid: f0d37162bbf6fa7468b901e52753de94, type: 3}
+  otherWorldSprite: {fileID: 400008140, guid: f0d37162bbf6fa7468b901e52753de94, type: 3}
