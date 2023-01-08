@@ -1,24 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.U2D;
 
-public class PickupLife : MonoBehaviour
+public class PickupSoul : MonoBehaviour
 {
     public GameObject afterEffectPrefab;
 
     public float afterEffectDuration = 1;
-
-    void Start()
-    {
-
-    }
-
-    void Update()
-    {
-
-    }
 
     void OnTriggerEnter2D(Collider2D col)
     {
@@ -26,7 +12,7 @@ public class PickupLife : MonoBehaviour
 
         if (col.tag?.Equals("player", System.StringComparison.OrdinalIgnoreCase) ?? false)
         {
-            IncreaseLives();
+            GlobalVariables.SoulPicked();
             //Debug.Log($"GlobalVariables.playerLives: {GlobalVariables.playerLives}");
 
             var afterEffect = Instantiate(afterEffectPrefab, transform.position, Quaternion.identity);
@@ -34,15 +20,5 @@ public class PickupLife : MonoBehaviour
 
             Destroy(gameObject);
         }
-    }
-
-    private static void IncreaseLives()
-    {
-        if (GlobalVariables.playerLives + 1 <= GlobalVariables.playerMaxLives)
-            GlobalVariables.playerLives++;
-    }
-
-    private void OnDestroy()
-    {
     }
 }
