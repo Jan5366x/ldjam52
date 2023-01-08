@@ -47,6 +47,8 @@ public class PlayerController : MonoBehaviour
         timeSinceLastJump += Time.deltaTime;
         timeSinceLastLand += Time.deltaTime;
 
+        bool idle = true;
+        bool falling = false;
 
         var legBackCenter = GetColliderCenter(legBack);
         var legFrontCenter = GetColliderCenter(legFront);
@@ -68,7 +70,11 @@ public class PlayerController : MonoBehaviour
         var rigidBody = GetComponent<Rigidbody2D>();
         if (touchesGroundAtStart)
         {
-            bool idle = false;
+            if (state == State.FALLING)
+            {
+                state = State.LANDING;
+                timeSinceLastLand = 0;
+            }
             if (Input.GetAxis("Horizontal") > 0.01)
             {
                 accelleration.x = 10;
@@ -122,7 +128,23 @@ public class PlayerController : MonoBehaviour
         else
         {
             rigidBody.drag = 0f;
+            timeSinceLastMove = 0;
+            falling = true;
+            idle = false;
+            if (timeSinceLastJump > 0.25 && timeSinceLastLand > 0.25)
+            {
+                state = State.FALLING;
+            }
         }
+
+        if (idle && !falling && timeSinceLastMove > 0.25 && timeSinceLastJump > 0.25 && timeSinceLastLand > 0.25)
+        {
+            state = State.IDLE; 
+        }
+        
+        var animator = GetComponent<Animator>();
+        AnimationHelper.SetParameter(animator, "state", (int) state);
+
 
         /*var oldOffset = (Vector2) transform.position - Vector2.Lerp(legBackCenter, legFrontCenter, 0.5f);
         Debug.DrawLine(transform.position, transform.position - (Vector3) oldOffset, Color.yellow);
