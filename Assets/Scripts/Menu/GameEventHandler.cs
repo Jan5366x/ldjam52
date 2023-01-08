@@ -3,7 +3,6 @@ using UnityEngine.SceneManagement;
 
 public class GameEventHandler : MonoBehaviour
 {
-    public static string lastLevel;
     public string nextLevel = "World1";
     public bool isFinal = false;
 
@@ -14,6 +13,7 @@ public class GameEventHandler : MonoBehaviour
 
     public void OnStart()
     {
+        GlobalVariables.ResetGame();
         LoadScene("World1");
     }
 
@@ -25,7 +25,7 @@ public class GameEventHandler : MonoBehaviour
         }
         else
         {
-            lastLevel = nextLevel;
+            GlobalVariables.lastLevel = nextLevel;
             LoadScene(nextLevel);
         }
     }
@@ -37,12 +37,13 @@ public class GameEventHandler : MonoBehaviour
 
     public void RetryLastLevel()
     {
-        LoadScene(lastLevel);
+        RetryLastLevelStatic();
     }
 
     public static void RetryLastLevelStatic()
     {
-        LoadScene(lastLevel);
+        GlobalVariables.ResetLevel();
+        LoadScene(GlobalVariables.lastLevel);
     }
 
     public static void LoadScene(string name)

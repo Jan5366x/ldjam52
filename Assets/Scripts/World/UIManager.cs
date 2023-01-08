@@ -4,27 +4,27 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    public GameObject livesPanel;
+    public GameObject soulsPanel;
 
-    private readonly List<GameObject> lives = new();
+    private readonly List<GameObject> souls = new();
 
     // Start is called before the first frame update
     void Start()
     {
-        for (var i = 0; i < livesPanel.transform.childCount; i++)
+        for (var i = 0; i < soulsPanel.transform.childCount; i++)
         {
-            lives.Add(livesPanel.transform.GetChild(i).gameObject);
+            souls.Add(soulsPanel.transform.GetChild(i).gameObject);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        for (var i = 0; i < GlobalVariables.playerLives; i++)
+        for (var i = 0; i < GlobalVariables.soulsCollected; i++)
         {
-            if (i >= lives.Count) return;
+            if (i >= souls.Count) return;
 
-            var rawImage = lives[i].GetComponent<RawImage>();
+            var rawImage = souls[i].GetComponent<RawImage>();
             rawImage.color = Color.white;
         }
     }
