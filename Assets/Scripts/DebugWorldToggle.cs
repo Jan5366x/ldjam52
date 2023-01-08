@@ -11,7 +11,7 @@ public class DebugWorldToggle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButton("Fire1"))
+        if (Input.GetButtonDown("Fire1"))
         {
             GlobalVariables.world = GlobalVariables.world == GlobalVariables.World.NormalDimention
                 ? GlobalVariables.World.OtherDimention
