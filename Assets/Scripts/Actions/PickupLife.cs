@@ -22,12 +22,12 @@ public class PickupLife : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log($"Collision detected with {col.gameObject.name} (tag:{col.tag}) by {gameObject.name}");
+        //Debug.Log($"Collision detected with {col.gameObject.name} (tag:{col.tag}) by {gameObject.name}");
 
         if (col.tag?.Equals("player", System.StringComparison.OrdinalIgnoreCase) ?? false)
         {
             IncreaseLives();
-            Debug.Log($"GlobalVariables.playerLives: {GlobalVariables.playerLives}");
+            //Debug.Log($"GlobalVariables.playerLives: {GlobalVariables.playerLives}");
 
             var afterEffect = Instantiate(afterEffectPrefab, transform.position, Quaternion.identity);
             Destroy(afterEffect, afterEffectDuration);
