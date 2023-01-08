@@ -1,26 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-[ExecuteInEditMode]
 public class SpriteSwapper : MonoBehaviour
 {
     public Sprite normalSprite;
-
     public Sprite otherWorldSprite;
 
-    private SpriteRenderer rendered;
+    private SpriteRenderer _rendered;
 
     // Start is called before the first frame update
     void Start()
     {
-        rendered = gameObject.GetComponent<SpriteRenderer>();
+        _rendered = gameObject.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (rendered == null)
+        if (_rendered == null)
             return;
 
         var sprite = GlobalVariables.world switch
@@ -29,7 +25,7 @@ public class SpriteSwapper : MonoBehaviour
             _ => normalSprite,
         };
 
-        if (rendered.sprite != sprite)
-            rendered.sprite = sprite;
+        if (_rendered.sprite != sprite)
+            _rendered.sprite = sprite;
     }
 }
