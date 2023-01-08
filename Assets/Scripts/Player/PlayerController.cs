@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     public float timeSinceLastLand;
     public bool touchesGroundAtStart;
 
-    public const float maxSpeedX = 7;
+    public const float maxSpeedX = 9;
     public const float maxSpeedY = 9;
     public const float maxStepSize = 0.5f;
     public const float closeToGround = 1f;
@@ -43,10 +43,82 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        timeSinceLastMove += Time.deltaTime;
+        timeSinceLastJump += Time.deltaTime;
+        timeSinceLastLand += Time.deltaTime;
+
+
         var legBackCenter = GetColliderCenter(legBack);
         var legFrontCenter = GetColliderCenter(legFront);
 
-        var oldOffset = (Vector2) transform.position - Vector2.Lerp(legBackCenter, legFrontCenter, 0.5f);
+        var legBackGround = GetGroundPosition(legBackCenter);
+        var legFrontGround = GetGroundPosition(legFrontCenter);
+
+        float angle = Mathf.Atan2(legFrontGround.y - legBackGround.y, legFrontGround.x - legBackGround.x);
+        if (Vector2.Distance(legBackGround, Vector2.zero) < 0.001 ||
+            Vector2.Distance(legFrontGround, Vector2.zero) < 0.001)
+        {
+            angle = 0;
+        }
+
+        transform.rotation = Quaternion.AngleAxis(Mathf.Rad2Deg * angle, Vector3.forward);
+        
+        touchesGroundAtStart = touchesGround(legBackCenter) || touchesGround(legFrontCenter);
+
+        if (touchesGroundAtStart)
+        {
+
+            bool idle = false;
+            if (Input.GetAxis("Horizontal") > 0.01)
+            {
+                accelleration.x = 10;
+                timeSinceLastMove = 0;
+                idle = false;
+                if (timeSinceLastLand > 0.25 && timeSinceLastJump > 0.25)
+                {
+                    state = State.WALK;
+                }
+
+                GetComponent<SpriteRenderer>().flipX = false;
+                GetComponent<Rigidbody2D>().AddForce(new Vector2(maxSpeedX * Mathf.Cos(angle), maxSpeedX * Mathf.Sin(angle)));
+            }
+            else if (Input.GetAxis("Horizontal") < -0.01)
+            {
+                accelleration.x = -10;
+                timeSinceLastMove = 0;
+                idle = false;
+                if (timeSinceLastLand > 0.25)
+                {
+                    state = State.WALK;
+                }
+
+                GetComponent<SpriteRenderer>().flipX = true;
+                GetComponent<Rigidbody2D>().AddForce(new Vector2(-maxSpeedX * Mathf.Cos(angle), -maxSpeedX * Mathf.Sin(angle)));
+            }
+            else
+            {
+                accelleration.x = 0;
+                velocity.y = -1;
+            }
+
+            if (Input.GetButton("Jump") && timeSinceLastJump > 0.25)
+            {
+                accelleration.y = 450;
+                velocity.y = 0;
+                idle = false;
+                state = State.JUMP;
+                timeSinceLastJump = 0;
+                GetComponent<Rigidbody2D>().AddForce(Vector2.up * 400);
+            }
+
+            GetComponent<Rigidbody2D>().drag = 0.95f;
+        }
+        else
+        {
+            GetComponent<Rigidbody2D>().drag = 0f;
+        }
+
+        /*var oldOffset = (Vector2) transform.position - Vector2.Lerp(legBackCenter, legFrontCenter, 0.5f);
         Debug.DrawLine(transform.position, transform.position - (Vector3) oldOffset, Color.yellow);
         accelleration = Vector2.zero;
         timeSinceLastMove += Time.deltaTime;
@@ -63,44 +135,7 @@ public class PlayerController : MonoBehaviour
         touchesGroundAtStart = touchesGround(legBackCenter) || touchesGround(legFrontCenter);
         if (touchesGroundAtStart)
         {
-            if (Input.GetAxis("Horizontal") > 0.01)
-            {
-                accelleration.x = 10;
-                timeSinceLastMove = 0;
-                idle = false;
-                if (timeSinceLastLand > 0.25 && timeSinceLastJump > 0.25)
-                {
-                    state = State.WALK;
-                }
 
-                GetComponent<SpriteRenderer>().flipX = false;
-            }
-            else if (Input.GetAxis("Horizontal") < -0.01)
-            {
-                accelleration.x = -10;
-                timeSinceLastMove = 0;
-                idle = false;
-                if (timeSinceLastLand > 0.25)
-                {
-                    state = State.WALK;
-                }
-
-                GetComponent<SpriteRenderer>().flipX = true;
-            }
-            else
-            {
-                accelleration.x = 0;
-                velocity.y = -1;
-            }
-
-            if (Input.GetButton("Jump") && timeSinceLastJump > 0.25)
-            {
-                accelleration.y = 450;
-                velocity.y = 0;
-                idle = false;
-                state = State.JUMP;
-                timeSinceLastJump = 0;
-            }
         }
         else
         {
@@ -228,6 +263,7 @@ public class PlayerController : MonoBehaviour
         {
             transform.SetPositionAndRotation((Vector2) transform.position + plannedMovement, Quaternion.identity);
         }
+        */
     }
 
 
