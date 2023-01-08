@@ -7,15 +7,22 @@ using UnityEngine.SceneManagement;
 
 public class PortalEntry : MonoBehaviour
 {
-    [AllowsNull]
-    public GameObject afterEffectPrefab;
+    public GlobalVariables.World nextWorld = GlobalVariables.World.OtherDimention;
+
+    public GameObject nextPortal;
 
     [AllowsNull]
     public string nextSceneName;
 
+    [AllowsNull]
+    public GameObject afterEffectPrefab;
+
     void Start()
     {
-
+        if (GlobalVariables.world != nextWorld)
+        {
+            nextPortal.SetActive(false);
+        }
     }
 
     void Update()
@@ -27,9 +34,9 @@ public class PortalEntry : MonoBehaviour
     {
         //Debug.Log($"Collision detected with {col.gameObject.name} (tag:{col.tag}) by {gameObject.name}");
 
-        if (col.tag?.Equals("player", System.StringComparison.OrdinalIgnoreCase) ?? false)
+        if (col.tag?.Equals("player", StringComparison.OrdinalIgnoreCase) ?? false)
         {
-            SwitchWorlds();
+            SwitchWorld();
             //Debug.Log($"GlobalVariables.world: {GlobalVariables.world}");
 
             if (afterEffectPrefab != null)
@@ -38,8 +45,15 @@ public class PortalEntry : MonoBehaviour
             if (!string.IsNullOrWhiteSpace(nextSceneName))
                 StartCoroutine(LoadNextSceneAsync());
 
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            gameObject.SetActive(false);
         }
+    }
+
+    private void SwitchWorld()
+    {
+        GlobalVariables.world = nextWorld;
+        nextPortal.SetActive(true);
     }
 
     IEnumerator LoadNextSceneAsync()
@@ -55,11 +69,4 @@ public class PortalEntry : MonoBehaviour
 
         //Debug.Log($"Loaded next scene: {nextSceneName}");
     }
-
-    private void SwitchWorlds() =>
-        GlobalVariables.world = GlobalVariables.world switch
-        {
-            GlobalVariables.World.NormalDimention => GlobalVariables.World.OtherDimention,
-            _ => GlobalVariables.World.NormalDimention
-        };
 }
