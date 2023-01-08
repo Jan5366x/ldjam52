@@ -109,9 +109,10 @@ GameObject:
   - component: {fileID: 4168720913174702743}
   - component: {fileID: 8216203593882270474}
   - component: {fileID: 9004799542970955506}
+  - component: {fileID: 5102131366355395903}
   m_Layer: 0
   m_Name: gray_cat
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -225,6 +226,7 @@ MonoBehaviour:
   timeSinceLastJump: 0
   timeSinceLastLand: 0
   touchesGroundAtStart: 0
+  prevAngle: 0
   state: 0
 --- !u!50 &9004799542970955506
 Rigidbody2D:
@@ -247,6 +249,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!70 &5102131366355395903
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4672171983018001651}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.27}
+  m_Size: {x: 1.17, y: 0.55}
+  m_Direction: 1
 --- !u!1 &6813831756401363154
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,6 +277,7 @@ GameObject:
   - component: {fileID: 6823630128691902126}
   - component: {fileID: 5396519414151662339}
   - component: {fileID: 2326542037487393699}
+  - component: {fileID: 1713462256159990006}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -291,7 +310,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
+  m_BackGroundColor: {r: 0.4764151, g: 0.84840244, b: 1, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -367,6 +386,20 @@ MonoBehaviour:
   speedHard: 50
   speed: 0
   dir: {x: 0, y: 0}
+--- !u!114 &1713462256159990006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6813831756401363154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 430f5ef3cc9d4ef4e92b4bb0e9fac6cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextLevel: World1
+  isFinal: 0
 --- !u!1 &7517134776394154260
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,10 +409,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9079801233473807070}
-  - component: {fileID: 2500745961723062838}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -401,19 +433,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!70 &2500745961723062838
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7517134776394154260}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.27}
-  m_Size: {x: 1.17, y: 0.55}
-  m_Direction: 1
