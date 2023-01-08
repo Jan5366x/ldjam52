@@ -158,7 +158,7 @@ TextureImporter:
         width: 320
         height: 129
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -200,7 +200,7 @@ TextureImporter:
         width: 284
         height: 106
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -221,7 +221,7 @@ TextureImporter:
         width: 284
         height: 106
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -242,7 +242,7 @@ TextureImporter:
         width: 173
         height: 108
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -250,6 +250,174 @@ TextureImporter:
       bones: []
       spriteID: 95f72d6927a848044a15c14add7d1156
       internalID: 2084398398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Field_Objects_1
+      rect:
+        serializedVersion: 2
+        x: 831
+        y: 652
+        width: 131
+        height: 372
+      alignment: 9
+      pivot: {x: 0.35830525, y: 0.0025464129}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d16feff7f5cd982409d24797736df8fd
+      internalID: -1243953995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Field_Objects_7
+      rect:
+        serializedVersion: 2
+        x: 636
+        y: 976
+        width: 12
+        height: 12
+      alignment: 9
+      pivot: {x: 0.37154642, y: 0.5442861}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d87d5fb97ce9bd14ab04d12f343cf5f9
+      internalID: 400008140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Field_Objects_8
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 621
+        width: 284
+        height: 110
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 594610a95972e964ebb5efe66be49d21
+      internalID: 199006260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Field_Objects_9
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 616
+        width: 320
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 496d5706778708e49b71eedb5ff39830
+      internalID: 1647752547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Field_Objects_10
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 499
+        width: 284
+        height: 115
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 457c030ae384f9d4eaa7490cf5fa7e34
+      internalID: 68352691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Field_Objects_11
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 490
+        width: 173
+        height: 106
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e7567606ba1d6c4eaf60f41ef2656a1
+      internalID: -1032123925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Field_Objects_12
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 159
+        width: 117
+        height: 110
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38de934674591134a82a714c561f39a9
+      internalID: 1766029831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Field_Objects_13
+      rect:
+        serializedVersion: 2
+        x: 364
+        y: 159
+        width: 117
+        height: 110
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb49e4412515f3142b0822f2f4aa7a92
+      internalID: 2050105200
       vertices: []
       indices: 
       edges: []
@@ -265,6 +433,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      Field_Objects_10: 68352691
+      Field_Objects_11: -1032123925
+      Field_Objects_12: 1766029831
       Field_Objects_4: 185280371
       Field_Objects_3: -609524830
       Field_Objects_5: -672721224
@@ -273,6 +444,9 @@ TextureImporter:
       Field_Objects_6: 2084398398
       Field_Objects_0: -1346286816
       Field_Objects_1: -1243953995
+      Field_Objects_13: 2050105200
+      Field_Objects_8: 199006260
+      Field_Objects_9: 1647752547
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
