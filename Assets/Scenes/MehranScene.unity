@@ -307,7 +307,7 @@ GameObject:
   - component: {fileID: 526970270}
   - component: {fileID: 526970271}
   m_Layer: 0
-  m_Name: MainObject
+  m_Name: NormalObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -820,6 +820,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 695969497}
     m_Modifications:
+    - target: {fileID: -5790943528473634491, guid: 87937f801ca954e4cbea86e56ae0bcca, type: 3}
+      propertyPath: nextSceneName
+      value: janworkspace
+      objectReference: {fileID: 0}
     - target: {fileID: 2202465082950401796, guid: 87937f801ca954e4cbea86e56ae0bcca, type: 3}
       propertyPath: m_Name
       value: portal
@@ -882,9 +886,21 @@ PrefabInstance:
       value: gray_box
       objectReference: {fileID: 0}
     - target: {fileID: 2202465082950401797, guid: e8f3ab431d58e2bbda1f07fc85734a52, type: 3}
+      propertyPath: m_Size.x
+      value: 2.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 2202465082950401797, guid: e8f3ab431d58e2bbda1f07fc85734a52, type: 3}
+      propertyPath: m_Size.y
+      value: 2.27
+      objectReference: {fileID: 0}
+    - target: {fileID: 2202465082950401797, guid: e8f3ab431d58e2bbda1f07fc85734a52, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 1890664940, guid: 363ccc3c43a94c6488dab567d3d6d590, type: 3}
+    - target: {fileID: 2202465082950401797, guid: e8f3ab431d58e2bbda1f07fc85734a52, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2202465082950401798, guid: e8f3ab431d58e2bbda1f07fc85734a52, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1141,7 +1157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76a7b969281382e4abb503f7381ef83d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainSprite: {fileID: 1988746731, guid: 363ccc3c43a94c6488dab567d3d6d590, type: 3}
+  normalSprite: {fileID: 1988746731, guid: 363ccc3c43a94c6488dab567d3d6d590, type: 3}
   otherWorldSprite: {fileID: 1890664940, guid: 363ccc3c43a94c6488dab567d3d6d590, type: 3}
 --- !u!4 &1456655864 stripped
 Transform:
@@ -1172,6 +1188,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1522853525}
+  - component: {fileID: 1522853526}
   m_Layer: 0
   m_Name: SwapObjects1
   m_TagString: Untagged
@@ -1196,6 +1213,20 @@ Transform:
   m_Father: {fileID: 695969497}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1522853526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1522853524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c9bfd39a34be6e47809b2b3d109c9d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalObjectNameContains: normal
+  otherObjectNameContains: other
 --- !u!4 &1557943713 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5409646934247712697, guid: 2c8ce5313d0c6c8499231ba96e83c3a3, type: 3}
