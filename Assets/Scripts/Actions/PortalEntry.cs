@@ -15,10 +15,10 @@ namespace Actions
 
         [AllowsNull]
         public GameObject afterEffectPrefab;
-
-    
+        
         private SpriteRenderer _render;
         private Collider2D _collider;
+        
         void Start()
         {
             _render = GetComponent<SpriteRenderer>();
