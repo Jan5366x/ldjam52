@@ -98,4 +98,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   normalSprite: {fileID: 21300000, guid: 997d042614fce174aafcd2dfe17fd678, type: 3}
-  otherWorldSprite: {fileID: 0}
+  otherWorldSprite: {fileID: 21300000, guid: 867a12c4434f44c49a523cadfbc3ac36, type: 3}
