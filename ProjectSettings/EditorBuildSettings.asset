@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/janworkspace.unity
     guid: 02412f5e06a587245a317bdc5c298305
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 263d4d7ae0e3dac4bba60eca923df431
+  - enabled: 1
+    path: Assets/Scenes/World1.unity
+    guid: 80d0bf81a240d35258a42d722404aa7e
   m_configObjects: {}
