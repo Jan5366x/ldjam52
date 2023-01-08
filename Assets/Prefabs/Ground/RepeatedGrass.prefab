@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1672332547924912057
+--- !u!1 &8765883929652166759
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,24 +8,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7797942125914608581}
-  - component: {fileID: 7437000981859624205}
-  - component: {fileID: 2865484555563794371}
-  - component: {fileID: 8756062985707847026}
+  - component: {fileID: 8765883929652166756}
+  - component: {fileID: 8765883929652166757}
+  - component: {fileID: 8765883929652166758}
   m_Layer: 0
-  m_Name: GroundA_5
-  m_TagString: Scene
+  m_Name: RepeatedGrass
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7797942125914608581
+--- !u!4 &8765883929652166756
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1672332547924912057}
+  m_GameObject: {fileID: 8765883929652166759}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -34,13 +33,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &7437000981859624205
+--- !u!212 &8765883929652166757
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1672332547924912057}
+  m_GameObject: {fileID: 8765883929652166759}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -75,75 +74,28 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 624617153, guid: 9c24103315384014191f7bb9fa925737, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 997d042614fce174aafcd2dfe17fd678, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 20.27, y: 13.93}
+  m_DrawMode: 2
+  m_Size: {x: 5, y: 5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &2865484555563794371
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1672332547924912057}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0.02, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 20.27, y: 13.93}
-    newSize: {x: 20.27, y: 13.93}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -10.100126, y: 6.457728}
-      - {x: -8.4871, y: 6.536912}
-      - {x: -7.7664256, y: 6.564328}
-      - {x: -7.1114254, y: 6.49696}
-      - {x: -6.0790186, y: 6.2836866}
-      - {x: -5.1370654, y: 5.9674544}
-      - {x: -4.169225, y: 5.2778344}
-      - {x: -3.5535617, y: 4.7942157}
-      - {x: -2.5715013, y: 3.5134306}
-      - {x: -1.6685908, y: 2.8137345}
-      - {x: -0.52502763, y: 1.6189286}
-      - {x: 0.59671307, y: 0.49889693}
-      - {x: 2.655228, y: -0.68364817}
-      - {x: 5.3813653, y: -2.2243857}
-      - {x: 6.6214457, y: -2.5891209}
-      - {x: 7.916877, y: -2.8778598}
-      - {x: 8.956908, y: -3.143628}
-      - {x: 10.141645, y: -3.3216283}
-      - {x: 10.205814, y: -3.4279792}
-      - {x: 10.133179, y: -6.9632416}
-      - {x: -10.119846, y: -6.950004}
-      - {x: -10.193584, y: 6.398759}
---- !u!114 &8756062985707847026
+--- !u!114 &8765883929652166758
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1672332547924912057}
+  m_GameObject: {fileID: 8765883929652166759}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76a7b969281382e4abb503f7381ef83d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalSprite: {fileID: 624617153, guid: 9c24103315384014191f7bb9fa925737, type: 3}
+  normalSprite: {fileID: 21300000, guid: 997d042614fce174aafcd2dfe17fd678, type: 3}
   otherWorldSprite: {fileID: 0}

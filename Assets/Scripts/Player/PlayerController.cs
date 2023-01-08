@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
 
     public const float maxSpeedX = 7;
     public const float maxSpeedY = 9;
+    public const float maxStepSize = 0.5f;
+    public const float closeToGround = 1f;
 
     public enum State
     {
@@ -43,7 +45,7 @@ public class PlayerController : MonoBehaviour
     {
         var legBackCenter = GetColliderCenter(legBack);
         var legFrontCenter = GetColliderCenter(legFront);
-        
+
         var oldOffset = (Vector2) transform.position - Vector2.Lerp(legBackCenter, legFrontCenter, 0.5f);
         Debug.DrawLine(transform.position, transform.position - (Vector3) oldOffset, Color.yellow);
         accelleration = Vector2.zero;
@@ -70,6 +72,7 @@ public class PlayerController : MonoBehaviour
                 {
                     state = State.WALK;
                 }
+
                 GetComponent<SpriteRenderer>().flipX = false;
             }
             else if (Input.GetAxis("Horizontal") < -0.01)
@@ -81,6 +84,7 @@ public class PlayerController : MonoBehaviour
                 {
                     state = State.WALK;
                 }
+
                 GetComponent<SpriteRenderer>().flipX = true;
             }
             else
@@ -107,7 +111,6 @@ public class PlayerController : MonoBehaviour
             {
                 state = State.FALLING;
             }
-
         }
 
         accelleration.y -= 10;
@@ -123,8 +126,10 @@ public class PlayerController : MonoBehaviour
         {
             velocity.x = 0;
         }
+
         velocity.x = Mathf.Clamp(velocity.x, -maxSpeedX, maxSpeedX);
-        velocity.y = Mathf.Clamp(velocity.y + accelleration.y * Time.deltaTime, (touchesGroundAtStart ) ? -1 : -maxSpeedY, maxSpeedY);
+        velocity.y = Mathf.Clamp(velocity.y + accelleration.y * Time.deltaTime,
+            (touchesGroundAtStart) ? -1 : -maxSpeedY, maxSpeedY);
 
         var plannedMovement = velocity * Time.deltaTime;
 
@@ -142,7 +147,7 @@ public class PlayerController : MonoBehaviour
 
         bool landing = false;
         var targetPositionBack = legBackCenter + plannedMovement;
-        
+
         if (targetPositionBack.y < groundBack.y)
         {
             targetPositionBack.y = groundBack.y;
@@ -174,37 +179,38 @@ public class PlayerController : MonoBehaviour
                 state = State.IDLE;
             }
         }
-        
+
         AnimationHelper.SetParameter(animator, "state", (int) state);
 
         Debug.DrawLine(targetPositionBack, groundBack, Color.green);
         Debug.DrawLine(targetPositionFront, groundFront, Color.blue);
-        
+
 
         bool hasGroundBelow = groundBack.sqrMagnitude > 0.001f && groundFront.sqrMagnitude > 0.001f;
 
         if (hasGroundBelow)
         {
             Vector2 position = Vector2.Lerp(targetPositionFront, targetPositionBack, 0.5f);
+            
+            float angle = Mathf.Atan2(groundFront.y - groundBack.y, groundFront.x - groundBack.x);
             // Prevent glitching back up cliffs
-            if (targetPositionFront.y > legFrontCenter.y + 1 || targetPositionBack.y > legBackCenter.y + 1)
+            if (targetPositionFront.y > legFrontCenter.y + maxStepSize || targetPositionBack.y > legBackCenter.y + maxStepSize)
             {
                 position.x = transform.position.x - oldOffset.x;
                 position.y = Mathf.Min(targetPositionFront.y, targetPositionBack.y);
+                angle = Mathf.Atan2(position.y - Mathf.Min(groundFront.y, groundBack.y), position.x - (groundFront.y < groundBack.y ? groundFront.x : groundBack.x));
             }
 
-            if (Vector2.Distance(position, transform.position) > 3)
+            if (Mathf.Abs(position.y - transform.position.y) > maxStepSize)
             {
                 Debug.LogError("Prevented Teleporting Cat");
                 return;
             }
-            
-            float angle = Mathf.Atan2(groundFront.y - groundBack.y,
-                groundFront.x - groundBack.x);
+
 
             Debug.DrawLine(position, position + new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)), Color.magenta);
 
-            if (distanceGroundBack < 1 && distanceGroundFront < 1)
+            if (distanceGroundBack < closeToGround && distanceGroundFront < closeToGround)
             {
                 angle = Mathf.Rad2Deg * angle;
             }
@@ -212,9 +218,11 @@ public class PlayerController : MonoBehaviour
             if (angle < -70 || angle > 70)
             {
                 Debug.LogError("Flipped the cat");
+                return;
             }
-                transform.SetPositionAndRotation((Vector2) position + oldOffset,
-                    Quaternion.AngleAxis(angle, Vector3.forward));
+
+            transform.SetPositionAndRotation((Vector2) position + oldOffset,
+                Quaternion.AngleAxis(angle, Vector3.forward));
         }
         else
         {
@@ -229,7 +237,7 @@ public class PlayerController : MonoBehaviour
         {
             if (raycastHit2D.transform.CompareTag("Scene"))
             {
-                return raycastHit2D.distance < 0.1;
+                return raycastHit2D.distance < maxStepSize;
             }
         }
 
@@ -238,9 +246,22 @@ public class PlayerController : MonoBehaviour
 
     Vector2 GetGroundPosition(Vector2 pos)
     {
+        Vector2 tryDown = GetRayCastDownHighestHit(new Vector2(pos.x, pos.y + 1));
+        if (Vector2.Distance(Vector2.zero, tryDown) <
+            0.01) // Nothing below. Try checking from the top and teleport there
+        {
+            return GetRayCastDownHighestHit(new Vector2(pos.x, 999));
+        }
+
+        return tryDown;
+    }
+
+    Vector2 GetRayCastDownHighestHit(Vector2 pos)
+    {
+        Debug.DrawRay(pos, Vector2.down, Color.black);
         float maxHeight = -99999;
         Vector2? maxObject = null;
-        foreach (var raycastHit2D in Physics2D.RaycastAll(new Vector2(pos.x, 99), Vector2.down))
+        foreach (var raycastHit2D in Physics2D.RaycastAll(pos, Vector2.down))
         {
             if (raycastHit2D.transform.CompareTag("Scene"))
             {
