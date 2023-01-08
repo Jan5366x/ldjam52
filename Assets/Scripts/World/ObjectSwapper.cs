@@ -1,57 +1,64 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-[ExecuteInEditMode]
-public class ObjectSwapper : MonoBehaviour
+namespace World
 {
-    public string normalObjectNameContains = "normal";
-
-    public string otherObjectNameContains = "other";
-
-    private GameObject normalObject;
-
-    private GameObject otherObject;
-
-    private GlobalVariables.World worldState;
-
-    // Start is called before the first frame update
-    void Start()
+    public class ObjectSwapper : MonoBehaviour
     {
-        worldState = GlobalVariables.world;
+        public string normalObjectNameContains = "normal";
 
-        for (var i = 0; i < transform.childCount; i++)
+        public string otherObjectNameContains = "other";
+
+        private GameObject _normalObject;
+
+        private GameObject _otherObject;
+
+        private GlobalVariables.World _worldState;
+
+        // Start is called before the first frame update
+        void Start()
         {
-            var child = transform.GetChild(i);
-            if (NameContains(child, normalObjectNameContains))
-                normalObject = child.gameObject;
-            else if (NameContains(child, otherObjectNameContains))
-                otherObject = child.gameObject;
+            _worldState = GlobalVariables.world;
+
+            for (var i = 0; i < transform.childCount; i++)
+            {
+                var child = transform.GetChild(i);
+                if (NameContains(child, normalObjectNameContains))
+                    _normalObject = child.gameObject;
+                else if (NameContains(child, otherObjectNameContains))
+                    _otherObject = child.gameObject;
+            }
+
+            bool NameContains(Transform child, string contains)
+            {
+                return child.name.Contains(contains, StringComparison.OrdinalIgnoreCase);
+            }
+            UpdateSwitch();
         }
 
-        bool NameContains(Transform child, string contains)
+        // Update is called once per frame
+        void Update()
         {
-            return child.name.Contains(contains, StringComparison.OrdinalIgnoreCase);
+            if (_worldState == GlobalVariables.world)
+                return;
+
+            UpdateSwitch();
         }
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (worldState == GlobalVariables.world ||
-            normalObject == null ||
-            otherObject == null)
-            return;
-
-        var activateMainWorld = GlobalVariables.world switch
+        private void UpdateSwitch()
         {
-            GlobalVariables.World.OtherDimention => false,
-            _ => true,
-        };
+            var activateMainWorld = GlobalVariables.world switch
+            {
+                GlobalVariables.World.OtherDimention => false,
+                _ => true,
+            };
 
-        normalObject.SetActive(activateMainWorld);
-        otherObject.SetActive(!activateMainWorld);
-        worldState = GlobalVariables.world;
+            if (_normalObject)
+                _normalObject.SetActive(activateMainWorld);
+            if (_otherObject)
+                _otherObject.SetActive(!activateMainWorld);
+        
+            _worldState = GlobalVariables.world;
+        }
     }
 }
