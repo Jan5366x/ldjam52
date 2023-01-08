@@ -306,6 +306,18 @@ PrefabInstance:
       propertyPath: speedSoft
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 2954645197002168216, guid: 710d139003d9bc68fbb55301a0219ee0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954645197002168216, guid: 710d139003d9bc68fbb55301a0219ee0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954645197002168216, guid: 710d139003d9bc68fbb55301a0219ee0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -10
+      objectReference: {fileID: 0}
     - target: {fileID: 7517134776394154260, guid: 710d139003d9bc68fbb55301a0219ee0, type: 3}
       propertyPath: m_Name
       value: Player

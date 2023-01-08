@@ -357,8 +357,8 @@ MonoBehaviour:
     y: 0.1
     width: 0.8
     height: 0.8
-  speedSoft: 5
-  speedHard: 12
+  speedSoft: 8
+  speedHard: 20
   speed: 0
   dir: {x: 0, y: 0}
 --- !u!1 &7517134776394154260
