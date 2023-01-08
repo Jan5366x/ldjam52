@@ -62,12 +62,12 @@ public class PlayerController : MonoBehaviour
         }
 
         transform.rotation = Quaternion.AngleAxis(Mathf.Rad2Deg * angle, Vector3.forward);
-        
+
         touchesGroundAtStart = touchesGround(legBackCenter) || touchesGround(legFrontCenter);
 
+        var rigidBody = GetComponent<Rigidbody2D>();
         if (touchesGroundAtStart)
         {
-
             bool idle = false;
             if (Input.GetAxis("Horizontal") > 0.01)
             {
@@ -80,7 +80,10 @@ public class PlayerController : MonoBehaviour
                 }
 
                 GetComponent<SpriteRenderer>().flipX = false;
-                GetComponent<Rigidbody2D>().AddForce(new Vector2(maxSpeedX * Mathf.Cos(angle), maxSpeedX * Mathf.Sin(angle)));
+                if (rigidBody.velocity.x < maxSpeedX)
+                {
+                    rigidBody.AddForce(new Vector2(20 * Mathf.Cos(angle), 20 * Mathf.Sin(angle)));
+                }
             }
             else if (Input.GetAxis("Horizontal") < -0.01)
             {
@@ -93,7 +96,10 @@ public class PlayerController : MonoBehaviour
                 }
 
                 GetComponent<SpriteRenderer>().flipX = true;
-                GetComponent<Rigidbody2D>().AddForce(new Vector2(-maxSpeedX * Mathf.Cos(angle), -maxSpeedX * Mathf.Sin(angle)));
+                if (rigidBody.velocity.x < maxSpeedX)
+                {
+                    rigidBody.AddForce(new Vector2(-20 * Mathf.Cos(angle), -20 * Mathf.Sin(angle)));
+                }
             }
             else
             {
@@ -108,14 +114,14 @@ public class PlayerController : MonoBehaviour
                 idle = false;
                 state = State.JUMP;
                 timeSinceLastJump = 0;
-                GetComponent<Rigidbody2D>().AddForce(Vector2.up * 400);
+                rigidBody.AddForce(Vector2.up * 400);
             }
 
-            GetComponent<Rigidbody2D>().drag = 0.95f;
+            rigidBody.drag = 0.95f;
         }
         else
         {
-            GetComponent<Rigidbody2D>().drag = 0f;
+            rigidBody.drag = 0f;
         }
 
         /*var oldOffset = (Vector2) transform.position - Vector2.Lerp(legBackCenter, legFrontCenter, 0.5f);
