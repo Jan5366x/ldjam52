@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public float timeSinceLastMove;
     public float timeSinceLastJump;
     public float timeSinceLastLand;
+    public bool touchesGroundAtStart;
 
     public const float maxSpeedX = 7;
     public const float maxSpeedY = 9;
@@ -57,7 +58,7 @@ public class PlayerController : MonoBehaviour
         bool idle = true;
         bool falling = false;
 
-        var touchesGroundAtStart = touchesGround(legBackCenter) || touchesGround(legFrontCenter);
+        touchesGroundAtStart = touchesGround(legBackCenter) || touchesGround(legFrontCenter);
         if (touchesGroundAtStart)
         {
             if (Input.GetAxis("Horizontal") > 0.01)
@@ -110,10 +111,10 @@ public class PlayerController : MonoBehaviour
         }
 
         accelleration.y -= 10;
-        velocity.x = touchesGroundAtStart
+        velocity.x = (touchesGroundAtStart || (state == State.FALLING && timeSinceLastJump < 5))
             ? velocity.x + accelleration.x * Time.deltaTime
             : velocity.x;
-        if (timeSinceLastMove > 0.01)
+        if (timeSinceLastMove > 0.01 || (state == State.FALLING && timeSinceLastJump > 5))
         {
             velocity.x -= (velocity.x * Mathf.Min(1f, Mathf.Exp(timeSinceLastMove - 1)));
         }
@@ -127,7 +128,7 @@ public class PlayerController : MonoBehaviour
 
         var plannedMovement = velocity * Time.deltaTime;
 
-        Debug.DrawLine(transform.position, transform.position + (Vector3) velocity, Color.red);
+        Debug.DrawLine(transform.position, transform.position + (Vector3) plannedMovement, Color.red);
 
         Vector2 groundBack = GetGroundPosition(legBackCenter + plannedMovement);
         Vector2 groundFront = GetGroundPosition(legFrontCenter + plannedMovement);
@@ -188,8 +189,14 @@ public class PlayerController : MonoBehaviour
             // Prevent glitching back up cliffs
             if (targetPositionFront.y > legFrontCenter.y + 1 || targetPositionBack.y > legBackCenter.y + 1)
             {
-                return ;
-                //position = transform.position;
+                position.x = transform.position.x - oldOffset.x;
+                position.y = Mathf.Min(targetPositionFront.y, targetPositionBack.y);
+            }
+
+            if (Vector2.Distance(position, transform.position) > 3)
+            {
+                Debug.LogError("Prevented Teleporting Cat");
+                return;
             }
             
             float angle = Mathf.Atan2(groundFront.y - groundBack.y,
