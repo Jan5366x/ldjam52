@@ -86,7 +86,7 @@ public class PlayerController : MonoBehaviour
                 }
 
                 GetComponent<SpriteRenderer>().flipX = false;
-                if (rigidBody.velocity.x < maxSpeedX)
+                if (Mathf.Abs(rigidBody.velocity.x) < maxSpeedX)
                 {
                     rigidBody.AddForce(new Vector2(20 * Mathf.Cos(angle), 20 * Mathf.Sin(angle)));
                 }
@@ -102,7 +102,7 @@ public class PlayerController : MonoBehaviour
                 }
 
                 GetComponent<SpriteRenderer>().flipX = true;
-                if (rigidBody.velocity.x < maxSpeedX)
+                if (Mathf.Abs(rigidBody.velocity.x) < maxSpeedX)
                 {
                     rigidBody.AddForce(new Vector2(-20 * Mathf.Cos(angle), -20 * Mathf.Sin(angle)));
                 }
