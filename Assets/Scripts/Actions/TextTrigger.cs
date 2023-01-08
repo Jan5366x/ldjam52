@@ -1,9 +1,7 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using UnityEditor.UIElements;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class TextTrigger : MonoBehaviour
 {
@@ -36,7 +34,7 @@ public class TextTrigger : MonoBehaviour
         if (triggerOnce && triggered)
             return;
 
-        if (col.tag?.Equals("player", System.StringComparison.OrdinalIgnoreCase) ?? false)
+        if (col.tag?.Equals("player", StringComparison.OrdinalIgnoreCase) ?? false)
         {
             Debug.Log($"Tell player: {text}");
             textField.text = text;
