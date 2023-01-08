@@ -1,31 +1,34 @@
 using UnityEngine;
 
-public class SpriteSwapper : MonoBehaviour
+namespace World
 {
-    public Sprite normalSprite;
-    public Sprite otherWorldSprite;
-
-    private SpriteRenderer _rendered;
-
-    // Start is called before the first frame update
-    void Start()
+    public class SpriteSwapper : MonoBehaviour
     {
-        _rendered = gameObject.GetComponent<SpriteRenderer>();
-    }
+        public Sprite normalSprite;
+        public Sprite otherWorldSprite;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (_rendered == null)
-            return;
+        private SpriteRenderer _rendered;
 
-        var sprite = GlobalVariables.world switch
+        // Start is called before the first frame update
+        void Start()
         {
-            GlobalVariables.World.OtherDimention => otherWorldSprite,
-            _ => normalSprite,
-        };
+            _rendered = gameObject.GetComponent<SpriteRenderer>();
+        }
 
-        if (_rendered.sprite != sprite)
-            _rendered.sprite = sprite;
+        // Update is called once per frame
+        void Update()
+        {
+            if (_rendered == null)
+                return;
+
+            var sprite = GlobalVariables.world switch
+            {
+                GlobalVariables.World.OtherDimention => otherWorldSprite,
+                _ => normalSprite,
+            };
+
+            if (_rendered.sprite != sprite)
+                _rendered.sprite = sprite;
+        }
     }
 }
