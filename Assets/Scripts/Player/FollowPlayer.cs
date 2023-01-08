@@ -19,7 +19,7 @@ public class FollowPlayer : MonoBehaviour
 
     private void Awake()
     {
-        player = GameObject.FindWithTag("Player").transform.Find("gray_cat").gameObject;
+        player = GameObject.FindWithTag("Player");
     }
 
     void FixedUpdate()
