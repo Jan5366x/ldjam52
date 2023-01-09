@@ -1272,7 +1272,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textBox: {fileID: 283227543}
   wasTriggered: 0
-  triggerOnce: 1
+  triggerOnce: 0
 --- !u!4 &175764959
 Transform:
   m_ObjectHideFlags: 0
@@ -3336,7 +3336,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textBox: {fileID: 34639883}
   wasTriggered: 0
-  triggerOnce: 1
+  triggerOnce: 0
 --- !u!4 &694091121 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7457658033930593844, guid: 161018f7a4b8d904e99044bb0dae51a3, type: 3}
@@ -5744,7 +5744,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textBox: {fileID: 456033613}
   wasTriggered: 0
-  triggerOnce: 1
+  triggerOnce: 0
 --- !u!4 &1331475849
 Transform:
   m_ObjectHideFlags: 0
@@ -6034,7 +6034,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textBox: {fileID: 678791711}
   wasTriggered: 0
-  triggerOnce: 1
+  triggerOnce: 0
 --- !u!4 &1397487741 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4622262177215849878, guid: a1970f9f2a9397143a689773e52a9eef, type: 3}
@@ -6892,7 +6892,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textBox: {fileID: 678791708}
   wasTriggered: 0
-  triggerOnce: 1
+  triggerOnce: 0
 --- !u!4 &1534596109
 Transform:
   m_ObjectHideFlags: 0
@@ -7032,7 +7032,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textBox: {fileID: 678791710}
   wasTriggered: 0
-  triggerOnce: 1
+  triggerOnce: 0
 --- !u!4 &1546042571
 Transform:
   m_ObjectHideFlags: 0
@@ -8373,7 +8373,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textBox: {fileID: 1652429545}
   wasTriggered: 0
-  triggerOnce: 1
+  triggerOnce: 0
 --- !u!1001 &1831453721
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9332,7 +9332,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textBox: {fileID: 678791709}
   wasTriggered: 0
-  triggerOnce: 1
+  triggerOnce: 0
 --- !u!4 &2024098700
 Transform:
   m_ObjectHideFlags: 0
@@ -9818,6 +9818,10 @@ PrefabInstance:
       propertyPath: textBox
       value: 
       objectReference: {fileID: 1625096920}
+    - target: {fileID: 1403645661861509404, guid: 8e3bc38a8180875448df27f03aa08c4f, type: 3}
+      propertyPath: triggerOnce
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1403645661861509405, guid: 8e3bc38a8180875448df27f03aa08c4f, type: 3}
       propertyPath: m_RootOrder
       value: 1
