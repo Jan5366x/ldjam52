@@ -96,6 +96,7 @@ namespace Player
                 {
                     state = State.LANDING;
                     timeSinceLastLand = 0;
+                    RandomizedSound.Play(transform, RandomizedSound.LAND);
                 }
 
                 if (Input.GetButton("Jump") && timeSinceLastJump > 0.25)
@@ -104,6 +105,7 @@ namespace Player
                     state = State.JUMP;
                     timeSinceLastJump = 0;
                     rigidBody.AddForce(Vector2.up * 400);
+                    RandomizedSound.Play(transform, RandomizedSound.JUMP);
                 }
 
                 rigidBody.drag = 0.95f;

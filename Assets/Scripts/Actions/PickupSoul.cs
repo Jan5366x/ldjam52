@@ -15,6 +15,8 @@ public class PickupSoul : MonoBehaviour
             GlobalVariables.SoulPicked();
             //Debug.Log($"GlobalVariables.playerLives: {GlobalVariables.playerLives}");
 
+            RandomizedSound.Play(col.transform, RandomizedSound.COLLECT);
+            
             var afterEffect = Instantiate(afterEffectPrefab, transform.position, Quaternion.identity);
             Destroy(afterEffect, afterEffectDuration);
 

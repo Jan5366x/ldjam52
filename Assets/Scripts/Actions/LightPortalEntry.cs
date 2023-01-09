@@ -39,6 +39,8 @@ namespace Actions
 
                 if (afterEffectPrefab != null)
                     Instantiate(afterEffectPrefab, transform.position, Quaternion.identity);
+                
+                RandomizedSound.Play(col.transform, RandomizedSound.PORTAL);
 
                 gameObject.SetActive(false);
             }
