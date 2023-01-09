@@ -22,6 +22,7 @@ namespace Actions
 
         private IEnumerator RemoveHearts()
         {
+            GlobalVariables.fillingHearts = true;
             yield return new WaitForSeconds(1);
             while (GlobalVariables.hearts > 1)
             {
@@ -30,6 +31,7 @@ namespace Actions
                 yield return new WaitForSeconds(0.2f);
             }
             Debug.Log("Done");
+            GlobalVariables.fillingHearts = false;
         }
     }
 }

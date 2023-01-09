@@ -87,8 +87,6 @@ public class FollowPlayer : MonoBehaviour
         tl.z = 0;
         tr.z = 0;
 
-        Debug.Log(bl);
-
         Debug.DrawLine(bl, br, Color.red);
         Debug.DrawLine(bl, tl, Color.red);
         Debug.DrawLine(tl, tr, Color.red);
