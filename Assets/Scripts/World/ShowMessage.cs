@@ -16,6 +16,7 @@ public class ShowMessage : MonoBehaviour
 
         if (col.gameObject.CompareTag("Player"))
         {
+            Debug.Log("Triggered " + textBox.name);
             textBox.SetActive(true);
             this.wasTriggered = true;
         }
@@ -25,6 +26,7 @@ public class ShowMessage : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Player"))
         {
+            Debug.Log("Left " + textBox.name);
             textBox.SetActive(false);
         }
     }

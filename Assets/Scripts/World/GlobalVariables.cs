@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GlobalVariables : MonoBehaviour
 {
-    public static string lastLevel;
+    public static string lastLevel = "World1";
 
     public static int soulsPerLevel = 9;
 
@@ -46,8 +46,14 @@ public class GlobalVariables : MonoBehaviour
     public static void SoulPicked()
     {
         if (soulsCollected + 1 <= soulsPerLevel)
+        {
             soulsCollected++;
+            totalSoulsCollected++;
+        }
     }
+
+    public static TimeSpan TimeSpent() =>
+        DateTime.Now - startTime;
 
     public enum World
     {
