@@ -13,8 +13,8 @@ namespace Player
         public bool touchesGroundAtStart;
         public float prevAngle;
 
-        public const float AccelGround = 20; 
-        public const float AccelAir = 10; 
+        public const float AccelGround = 20;
+        public const float AccelAir = 10;
         public const float MaxSpeedXGround = 10;
         public const float MaxSpeedXAir = 6;
         public const float MaxStepSize = 0.5f;
@@ -53,6 +53,8 @@ namespace Player
             var legBackGround = GetGroundPosition(legBackCenter);
             var legFrontGround = GetGroundPosition(legFrontCenter);
 
+            Debug.DrawLine(legBackGround, legFrontGround, Color.green);
+
             float angle = Mathf.Atan2(legFrontGround.y - legBackGround.y, legFrontGround.x - legBackGround.x);
             if (Vector2.Distance(legBackGround, Vector2.zero) < 0.001 ||
                 Vector2.Distance(legFrontGround, Vector2.zero) < 0.001)
@@ -61,13 +63,30 @@ namespace Player
             }
 
             angle *= Mathf.Rad2Deg;
+            
 
+            
             angle = Mathf.Clamp(angle, -45, 45);
+            
+            Debug.DrawLine(transform.position,
+                transform.position +
+                new Vector3(Mathf.Cos(Mathf.Deg2Rad * angle), Mathf.Sin(Mathf.Deg2Rad * angle), 0),
+                Color.magenta);
 
             if (Mathf.Abs(angle - prevAngle) > 10)
             {
-                angle = Mathf.LerpAngle(prevAngle, angle, 0.1f);
+                angle = Mathf.LerpAngle(prevAngle, angle, 0.01f);
             }
+            else
+            {
+             prevAngle = angle;
+            }
+
+
+            Debug.DrawLine(transform.position,
+                transform.position +
+                new Vector3(Mathf.Cos(Mathf.Deg2Rad * angle), Mathf.Sin(Mathf.Deg2Rad * angle), 0),
+                Color.blue);
 
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
@@ -106,13 +125,13 @@ namespace Player
 
             float maxSpeed = touchesGroundAtStart ? MaxSpeedXGround : MaxSpeedXAir;
             float accel = touchesGroundAtStart ? AccelGround : AccelAir;
-        
-        
+
+
             if (Input.GetAxis("Horizontal") > 0.1)
             {
                 timeSinceLastMove = 0;
                 idle = false;
-                if (timeSinceLastLand > 0.25 && timeSinceLastJump > 0.25)
+                if (state == State.IDLE || (state == State.LANDING && timeSinceLastLand > 0.25))
                 {
                     state = State.WALK;
                 }
@@ -128,7 +147,7 @@ namespace Player
             {
                 timeSinceLastMove = 0;
                 idle = false;
-                if (timeSinceLastLand > 0.25)
+                if (state == State.IDLE || (state == State.LANDING && timeSinceLastLand > 0.25))
                 {
                     state = State.WALK;
                 }
@@ -148,6 +167,11 @@ namespace Player
 
             var animator = GetComponent<Animator>();
             AnimationHelper.SetParameter(animator, "state", (int) state);
+
+            for (int i = 0; i < (int) state; i++)
+            {
+                Debug.DrawLine(transform.position, transform.position + Vector3.right * i, Color.blue);
+            }
         }
 
 
