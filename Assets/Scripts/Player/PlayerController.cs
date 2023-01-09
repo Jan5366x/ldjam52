@@ -63,9 +63,6 @@ namespace Player
             }
 
             angle *= Mathf.Rad2Deg;
-            
-
-            
             angle = Mathf.Clamp(angle, -45, 45);
             
             Debug.DrawLine(transform.position,

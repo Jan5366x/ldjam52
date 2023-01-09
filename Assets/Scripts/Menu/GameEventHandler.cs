@@ -20,6 +20,8 @@ public class GameEventHandler : MonoBehaviour
 
     public void OnVictory()
     {
+        GlobalVariables.LevelFinishedLevel();
+
         if (isFinal || nextLevel == "")
         {
             OnFinalVictory();

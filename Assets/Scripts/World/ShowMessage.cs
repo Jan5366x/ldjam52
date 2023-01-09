@@ -5,11 +5,19 @@ using UnityEngine.UI;
 public class ShowMessage : MonoBehaviour
 {
     public GameObject textBox;
+    
     public bool wasTriggered = false;
+    
+    public bool triggerOnce = true;
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (this.wasTriggered)
+        TriggerEntered(col);
+    }
+
+    protected void TriggerEntered(Collider2D col)
+    {
+        if (triggerOnce && wasTriggered)
         {
             return;
         }
@@ -18,11 +26,16 @@ public class ShowMessage : MonoBehaviour
         {
             Debug.Log("Triggered " + textBox.name);
             textBox.SetActive(true);
-            this.wasTriggered = true;
+            wasTriggered = true;
         }
     }
 
     private void OnTriggerExit2D(Collider2D col)
+    {
+        TriggerExited(col);
+    }
+
+    protected void TriggerExited(Collider2D col)
     {
         if (col.gameObject.CompareTag("Player"))
         {
