@@ -5,6 +5,7 @@ public class FollowPlayer : MonoBehaviour
 {
     public GameObject player;
 
+    public Vector2 centerNormalized = new Vector2(0.5f, 0.25f);
     public Rect nothingEdge;
     public Rect softEdge;
     public Rect hardEdge;
@@ -14,8 +15,7 @@ public class FollowPlayer : MonoBehaviour
 
     [ReadOnly] public float speed;
     [ReadOnly] public Vector2 dir;
-
-    private static Vector2 centerNormalized = new Vector2(0.5f, 0.5f);
+    [ReadOnly] public Vector2 screenRatio;
 
     private void Awake()
     {
@@ -28,8 +28,12 @@ public class FollowPlayer : MonoBehaviour
         {
             speed = 0;
             Camera camera = GetComponentInChildren<Camera>();
-            var screenRatio = camera.WorldToScreenPoint(player.transform.position) /
-                              new Vector2(Screen.width, Screen.height);
+            screenRatio = camera.WorldToScreenPoint(player.transform.position) /
+                          new Vector2(Screen.width, Screen.height);
+            Debug.DrawLine(camera.ViewportToWorldPoint(centerNormalized), player.transform.position, Color.red);
+            DrawRect(camera, nothingEdge);
+            DrawRect(camera, softEdge);
+            DrawRect(camera, hardEdge);
             if (nothingEdge.Contains(screenRatio))
             {
                 speed = 0;
@@ -47,8 +51,10 @@ public class FollowPlayer : MonoBehaviour
                 speed = speedHard;
             }
 
-            Vector3 delta = player.transform.position - transform.position;
-            dir = delta.normalized * (speed * Time.fixedDeltaTime);
+            Vector3 delta = player.transform.position - camera.ViewportToWorldPoint(centerNormalized);
+            Debug.DrawLine(player.transform.position, transform.position + delta, Color.red);
+
+            dir = delta / delta.magnitude * (speed * Time.fixedDeltaTime);
             transform.Translate(dir.x, dir.y, 0);
         }
     }
@@ -68,5 +74,24 @@ public class FollowPlayer : MonoBehaviour
         float tY = Mathf.InverseLerp(innerHeight, outerHeight, deltaY);
 
         return Mathf.Max(tX, tY);
+    }
+
+    private static void DrawRect(Camera camera, Rect rect)
+    {
+        var bl = camera.ViewportToWorldPoint(new Vector3(rect.xMin, rect.yMin));
+        var br = camera.ViewportToWorldPoint(new Vector3(rect.xMax, rect.yMin));
+        var tl = camera.ViewportToWorldPoint(new Vector3(rect.xMin, rect.yMax));
+        var tr = camera.ViewportToWorldPoint(new Vector3(rect.xMax, rect.yMax));
+        bl.z = 0;
+        br.z = 0;
+        tl.z = 0;
+        tr.z = 0;
+
+        Debug.Log(bl);
+
+        Debug.DrawLine(bl, br, Color.red);
+        Debug.DrawLine(bl, tl, Color.red);
+        Debug.DrawLine(tl, tr, Color.red);
+        Debug.DrawLine(tr, br, Color.red);
     }
 }

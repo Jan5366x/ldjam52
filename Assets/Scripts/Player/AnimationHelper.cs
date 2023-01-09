@@ -54,7 +54,7 @@ public class AnimationHelper
         animator.SetFloat(parameter, value);
     }
 
-    public static void SetParameter(Animator animator, String parameter, int value)
+    public static void SetParameter(Animator animator, String parameter, int value, bool forceReset = true)
     {
         if (!animator)
         {
@@ -63,7 +63,18 @@ public class AnimationHelper
 
         if (!HasParameter(animator, parameter)) return;
 
-        animator.SetInteger(parameter, value);
+        if (animator.GetInteger(parameter) != value)
+        {
+            if (forceReset)
+            {
+                animator.enabled = false;
+            }
+            animator.SetInteger(parameter, value);
+            if (forceReset)
+            {
+                animator.enabled = true;
+            }
+        }
     }
     
     public static void Trigger(Animator animator, String parameter)
