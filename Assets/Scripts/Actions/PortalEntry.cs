@@ -53,26 +53,16 @@ namespace Actions
                 if (afterEffectPrefab != null)
                     Instantiate(afterEffectPrefab, transform.position, Quaternion.identity);
 
+
+
                 if (!string.IsNullOrWhiteSpace(nextSceneName))
-                    StartCoroutine(LoadNextSceneAsync());
+                {
+                    GameObject.FindWithTag("Player").GetComponent<GameEventHandler>().OnVictory();
+                }
 
                 //Destroy(gameObject);
                 gameObject.SetActive(false);
             }
-        }
-
-        IEnumerator LoadNextSceneAsync()
-        {
-            //Debug.Log($"Loading next scene: {nextSceneName}");
-            var loadOperation = SceneManager.LoadSceneAsync(nextSceneName);
-            // Do we need loading screen?
-
-            while (!loadOperation.isDone)
-            {
-                yield return null;
-            }
-
-            //Debug.Log($"Loaded next scene: {nextSceneName}");
         }
     }
 }
