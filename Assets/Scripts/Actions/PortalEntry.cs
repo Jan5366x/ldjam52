@@ -1,8 +1,6 @@
 using System;
-using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Actions
 {
@@ -31,10 +29,7 @@ namespace Actions
             _collider.enabled = !IsSameWorld();
         }
 
-        private bool IsSameWorld()
-        {
-            return GlobalVariables.world == nextWorld;
-        }
+        private bool IsSameWorld() => GlobalVariables.world == nextWorld;
 
         void OnTriggerEnter2D(Collider2D col)
         {
@@ -52,9 +47,7 @@ namespace Actions
 
                 if (afterEffectPrefab != null)
                     Instantiate(afterEffectPrefab, transform.position, Quaternion.identity);
-
-
-
+                
                 if (!string.IsNullOrWhiteSpace(nextSceneName))
                 {
                     GameObject.FindWithTag("Player").GetComponent<GameEventHandler>().OnVictory();
