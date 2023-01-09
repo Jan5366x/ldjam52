@@ -37,7 +37,7 @@ public class GlobalVariables : MonoBehaviour
     public static bool CanLevelBeCompleted() =>
         soulsCollected >= soulsPerLevel;
 
-    public static void NextLevel()
+    public static void LevelFinishedLevel()
     {
         totalSoulsCollected += soulsCollected;
         ResetLevel();
@@ -46,10 +46,8 @@ public class GlobalVariables : MonoBehaviour
 
     public static void SoulPicked()
     {
-        if (soulsCollected + 1 <= soulsPerLevel)
-        {
+        if (soulsCollected <= soulsPerLevel)
             soulsCollected++;
-        }
     }
 
     public static TimeSpan TimeSpent() =>
