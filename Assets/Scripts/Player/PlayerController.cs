@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         timeSinceLastMove += Time.deltaTime;
         timeSinceLastJump += Time.deltaTime;
