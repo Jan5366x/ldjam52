@@ -6,7 +6,9 @@ public class ShowLevelNotCompletedMessage : ShowMessage
 {
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.CompareTag("Player") && !GlobalVariables.CanLevelBeCompleted())
+        if (GlobalVariables.world == GlobalVariables.World.OtherDimention &&
+            col.gameObject.CompareTag("Player") &&
+            !GlobalVariables.CanLevelBeCompleted())
         {
             TriggerEntered(col);
         }

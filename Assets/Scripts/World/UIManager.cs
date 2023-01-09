@@ -24,7 +24,7 @@ public class UIManager : MonoBehaviour
     {
         for (var i = 0; i < GlobalVariables.soulsCollected; i++)
         {
-            if (i >= souls.Count - 1) return;
+            if (i >= souls.Count) return;
 
             var rawImage = souls[i].GetComponent<Image>();
             rawImage.sprite = collectedSprite;
