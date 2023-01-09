@@ -22,12 +22,12 @@ Jump: Y
 
 # Long Description
 
-You play the character of Mikesch - Everyones favorite cat.
-Mikesh has fallen from way to high and has lost almost all of his nine lives.
+You play the character of Mikesch - Everyone's favorite cat.
+Mikesch has fallen from way to high and has lost almost all of his nine lives.
 Help him regain his hearts by offering cat spirit souls at the health altar.
-To gather hearts you must solve jumping puzzel.
-Once you find a portal to the spirit realm you can go ahead and harvest cat souls from their ethernal slumber.
-Once you have collected all spirit souls neccessary you can ofer them an the great health altar and restore Mikesch to his 9 lives.
+To gather hearts you must solve jumping puzzle.
+Once you find a portal to the spirit realm you can go ahead and harvest cat souls from their eternal slumber.
+Once you have collected all spirit souls necessary you can offer them an the great health altar and restore Mikesch to his 9 lives.
 
 # Tools
 
