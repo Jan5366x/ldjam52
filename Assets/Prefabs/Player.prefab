@@ -1311,6 +1311,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 4672171983018001651}
+  centerNormalized: {x: 0.5, y: 0.25}
   nothingEdge:
     serializedVersion: 2
     x: 0.45
@@ -1333,6 +1334,7 @@ MonoBehaviour:
   speedHard: 50
   speed: 0
   dir: {x: 0, y: 0}
+  screenRatio: {x: 0, y: 0}
 --- !u!114 &1713462256159990006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1357,7 +1359,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 8957849993666243072, guid: 37a5427cc90123e438ede5229f0eb659, type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 4a089a8ca598e3a408b71620c2f45257, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1

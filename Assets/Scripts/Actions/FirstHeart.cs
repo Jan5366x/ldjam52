@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Actions
 {
-    public class FinalHeart : MonoBehaviour
+    public class FirstHeart : MonoBehaviour
     {
         public bool triggered = false;
 
@@ -14,27 +14,23 @@ namespace Actions
             {
                 if (!triggered)
                 {
-                    StartCoroutine("Finale");
+                    StartCoroutine("RemoveHearts");
                     triggered = true;
                 }
-
             }
         }
 
-        private IEnumerator Finale()
+        private IEnumerator RemoveHearts()
         {
-            Debug.Log("Started Finale2");
             yield return new WaitForSeconds(1);
-            while (GlobalVariables.hearts < 9)
+            while (GlobalVariables.hearts > 1)
             {
-                GlobalVariables.hearts++;
-                Debug.Log("Hearts : "+GlobalVariables.hearts);
+                GlobalVariables.hearts--;
+                Debug.Log("Hearts : " + GlobalVariables.hearts);
                 yield return new WaitForSeconds(1);
             }
-            
-            Debug.Log("Done");
 
-            GameObject.FindWithTag("Player").GetComponent<GameEventHandler>().OnVictory();
+            Debug.Log("Done");
         }
     }
 }
