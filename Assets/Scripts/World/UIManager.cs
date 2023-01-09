@@ -24,9 +24,9 @@ public class UIManager : MonoBehaviour
             souls.Add(soulsPanel.transform.GetChild(i).gameObject);
         }
 
-        for (var i = 0; i < soulsPanel.transform.childCount; i++)
+        for (var i = 0; i < heartPanel.transform.childCount; i++)
         {
-            hearts.Add(soulsPanel.transform.GetChild(i).gameObject);
+            hearts.Add(heartPanel.transform.GetChild(i).gameObject);
         }
     }
 
@@ -41,12 +41,16 @@ public class UIManager : MonoBehaviour
             rawImage.sprite = soulCollected;
         }
 
-        for (var i = 0; i < GlobalVariables.hearts; i++)
+        if (GlobalVariables.fillingHearts ||
+            GlobalVariables.world == GlobalVariables.World.NormalDimention)
         {
-            if (i >= hearts.Count) return;
+            for (var i = 0; i < GlobalVariables.hearts; i++)
+            {
+                if (i >= hearts.Count) return;
 
-            var rawImage = hearts[i].GetComponent<Image>();
-            rawImage.sprite = heartCollected;
+                var rawImage = hearts[i].GetComponent<Image>();
+                rawImage.sprite = heartCollected;
+            }
         }
     }
 }

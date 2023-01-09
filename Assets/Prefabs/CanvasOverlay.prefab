@@ -545,7 +545,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1086577294559978281}
-  - component: {fileID: 362764646130243213}
+  - component: {fileID: 5489801809103619571}
   m_Layer: 5
   m_Name: UISwapper
   m_TagString: Untagged
@@ -575,7 +575,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &362764646130243213
+--- !u!114 &5489801809103619571
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -584,7 +584,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2603786953939670286}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c9bfd39a34be6e47809b2b3d109c9d6, type: 3}
+  m_Script: {fileID: 11500000, guid: fc0c3e32250da5f48a4464952b01375c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   normalObjectNameContains: LivesUI
@@ -1544,7 +1544,7 @@ MonoBehaviour:
   soulsPanel: {fileID: 2024247601796449297}
   heartPanel: {fileID: 5409646934879250261}
   soulCollected: {fileID: -845592248, guid: fe5847bfb938d9c41a0b6d75144954f3, type: 3}
-  heartCollected: {fileID: 1494923803, guid: fe5847bfb938d9c41a0b6d75144954f3, type: 3}
+  heartCollected: {fileID: -727622296, guid: fe5847bfb938d9c41a0b6d75144954f3, type: 3}
 --- !u!1 &5409646934879250261
 GameObject:
   m_ObjectHideFlags: 0
@@ -3426,7 +3426,7 @@ PrefabInstance:
     - target: {fileID: 3806898255810314356, guid: 36ff922bac3c05443ada3aaf43213bbf, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 1494923803, guid: fe5847bfb938d9c41a0b6d75144954f3, type: 3}
+      objectReference: {fileID: 45511986, guid: fe5847bfb938d9c41a0b6d75144954f3, type: 3}
     - target: {fileID: 5904717241103646871, guid: 36ff922bac3c05443ada3aaf43213bbf, type: 3}
       propertyPath: m_Name
       value: Live1

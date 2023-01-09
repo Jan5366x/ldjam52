@@ -23,7 +23,6 @@ namespace Actions
                 Debug.Log("Hearts : " + GlobalVariables.hearts);
                 yield return new WaitForSeconds(1);
             }
-
             Debug.Log("Done");
         }
     }

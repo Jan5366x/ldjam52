@@ -15,7 +15,9 @@ public class GlobalVariables : MonoBehaviour
 
     public static int levelsCompleted = 0;
 
-    public static int hearts = 0;
+    public static int hearts = 1;
+
+    public static bool fillingHearts = false;
 
     public static World world = World.NormalDimention;
 
@@ -34,6 +36,7 @@ public class GlobalVariables : MonoBehaviour
         soulsCollected = 0;
         totalSoulsCollected = 0;
         levelsCompleted = 0;
+        hearts = 1;
     }
 
     public static bool CanLevelBeCompleted() =>
