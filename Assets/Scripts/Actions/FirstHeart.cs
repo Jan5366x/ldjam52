@@ -6,11 +6,17 @@ namespace Actions
 {
     public class FirstHeart : MonoBehaviour
     {
+        public bool triggered = false;
+
         private void OnTriggerEnter2D(Collider2D col)
         {
             if (col.CompareTag("Player"))
             {
-                StartCoroutine("RemoveHearts");
+                if (!triggered)
+                {
+                    StartCoroutine("RemoveHearts");
+                    triggered = true;
+                }
             }
         }
 
