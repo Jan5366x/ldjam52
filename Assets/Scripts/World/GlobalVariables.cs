@@ -39,6 +39,7 @@ public class GlobalVariables : MonoBehaviour
 
     public static void NextLevel()
     {
+        totalSoulsCollected += soulsCollected;
         ResetLevel();
         levelsCompleted++;
     }
@@ -48,7 +49,6 @@ public class GlobalVariables : MonoBehaviour
         if (soulsCollected + 1 <= soulsPerLevel)
         {
             soulsCollected++;
-            totalSoulsCollected++;
         }
     }
 
@@ -59,5 +59,10 @@ public class GlobalVariables : MonoBehaviour
     {
         NormalDimention,
         OtherDimention
+    }
+
+    public int getTotalSoulsCollectedWhileInScene()
+    {
+        return totalSoulsCollected + soulsCollected;
     }
 }
