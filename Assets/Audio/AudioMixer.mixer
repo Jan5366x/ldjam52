@@ -138,6 +138,8 @@ AudioMixerController:
     name: Audio/Jump
   - guid: 7cc5265fd4caf27cd944bde303e97f50
     name: Audio/Land
+  - guid: 3b0b4b5bedf9a7d56ae6aa73af516d49
+    name: Master
   - guid: fd75d6f18cf64dcf198cb5037d211f06
     name: Audio/Portal
   - guid: 52ee3c18380b02dbea9ce5558d2c258e
@@ -200,7 +202,8 @@ AudioMixerSnapshotController:
   m_Name: Snapshot
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: 75059c50ded74e58eb857a1916948dfe
-  m_FloatValues: {}
+  m_FloatValues:
+    7b098e2a6b0a2b5b6895a7a92ca2d010: -10.345207
   m_TransitionOverrides: {}
 --- !u!243 &2378921807830834339
 AudioMixerGroupController:
