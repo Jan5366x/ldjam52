@@ -14,6 +14,7 @@ public class GameEventHandler : MonoBehaviour
     public void OnStart()
     {
         GlobalVariables.ResetGame();
+        GlobalVariables.lastLevel = "World1";
         LoadScene("World1");
     }
 

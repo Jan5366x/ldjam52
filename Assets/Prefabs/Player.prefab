@@ -644,6 +644,7 @@ GameObject:
   - component: {fileID: 9004799542970955506}
   - component: {fileID: 5102131366355395903}
   - component: {fileID: 4729186261077019142}
+  - component: {fileID: 9205406805555810318}
   m_Layer: 0
   m_Name: gray_cat
   m_TagString: Player
@@ -810,6 +811,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds: []
+--- !u!114 &9205406805555810318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4672171983018001651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 430f5ef3cc9d4ef4e92b4bb0e9fac6cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextLevel: World1
+  isFinal: 0
 --- !u!1 &5020192019678057117
 GameObject:
   m_ObjectHideFlags: 0
