@@ -16,7 +16,7 @@ Movement: A/D or Arrow Keys
 Jump: Space / Shift
 
 ## Controller:
-
+    
 Movement: JoyStick
 Jump: Y
 
