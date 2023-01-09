@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2202465082950401798}
   - component: {fileID: 2202465082950401797}
-  - component: {fileID: -3267257920917462133}
   - component: {fileID: 8520639560718739656}
   - component: {fileID: 9114564823984792950}
+  - component: {fileID: 6702632690697304382}
   m_Layer: 0
   m_Name: LightPortal
   m_TagString: Untagged
@@ -87,32 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &-3267257920917462133
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2202465082950401796}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.47453976, y: 0.53125864}
-    oldSize: {x: 2.01, y: 1.91}
-    newSize: {x: 2.61, y: 2.57}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 2.61, y: 2.57}
-  m_EdgeRadius: 0
 --- !u!95 &8520639560718739656
 Animator:
   serializedVersion: 5
@@ -145,4 +119,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3034de2e427346a4f949d2e69c4b5260, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextWorld: 1
+  nextSceneName: 
   afterEffectPrefab: {fileID: 0}
+--- !u!70 &6702632690697304382
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2202465082950401796}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.03, y: 0.01}
+  m_Size: {x: 0.72, y: 0.99}
+  m_Direction: 0
