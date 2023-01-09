@@ -55,6 +55,11 @@ public class GameScore : MonoBehaviour
             _soulsCollectedText.text = $"Souls collected: {GlobalVariables.totalSoulsCollected}";
 
         if (_timeSpentText != null)
-            _timeSpentText.text = $"Time spent: {GlobalVariables.TimeSpent().TotalMinutes}min";
+        {
+            var totalMinutes = GlobalVariables.TimeSpent().TotalMinutes;
+            var minute = (int) totalMinutes;
+            var second = (int) ((totalMinutes - minute) * 60);
+            _timeSpentText.text = $"Time spent: {minute}min {second}s";
+        }
     }
 }
