@@ -15,6 +15,9 @@ public class MasterAdjuster : MonoBehaviour
     private void SetMaster(float value)
     {
         mixer.SetFloat(MASTER, value);
+        float outValue;
+        mixer.GetFloat(MASTER, out outValue);
+        Debug.Log(outValue);
     }
 
     public void SetMaster()
