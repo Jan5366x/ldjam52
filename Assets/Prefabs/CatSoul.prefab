@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7529035550178311842}
   - component: {fileID: 1281515891629946708}
   - component: {fileID: 4002371304068986622}
+  - component: {fileID: 478076726445257505}
   m_Layer: 0
   m_Name: CatSoul
   m_TagString: Untagged
@@ -163,3 +164,18 @@ MonoBehaviour:
   amplifier: 0.5
   frequency: 2
   direction: 0
+--- !u!114 &478076726445257505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4622262177215849877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18468657ba4948748fda9308c731012d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minTransparency: 0.535
+  maxTransparency: 0.923
+  frequency: 0.47
