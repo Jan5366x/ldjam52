@@ -19,5 +19,10 @@ public class DebugWorldToggle : MonoBehaviour
             
             Debug.LogWarning("Debug World Toggle triggered!!!!"); 
         }
+
+        if (Input.GetButtonDown("Cancel"))
+        {
+            GameObject.FindWithTag("Player").GetComponent<GameEventHandler>().RetryLastLevel();
+        }
     }
 }
