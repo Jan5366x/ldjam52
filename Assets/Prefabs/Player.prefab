@@ -831,6 +831,7 @@ GameObject:
   m_Component:
   - component: {fileID: 380691126270615125}
   - component: {fileID: 4587538700879132392}
+  - component: {fileID: 2122867144397118839}
   m_Layer: 0
   m_Name: Land
   m_TagString: Untagged
@@ -949,6 +950,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2122867144397118839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4345610475872114857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05af01effb454c289ebf16d4773d7473, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds: []
 --- !u!1 &4672171983018001651
 GameObject:
   m_ObjectHideFlags: 0
@@ -1476,6 +1490,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2429988136673022116}
   - component: {fileID: 960485118386162154}
+  - component: {fileID: 2948083897661252322}
   m_Layer: 0
   m_Name: SwitchDirection
   m_TagString: Untagged
@@ -1594,6 +1609,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2948083897661252322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6482722739719820308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05af01effb454c289ebf16d4773d7473, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds: []
 --- !u!1 &6492418573361647166
 GameObject:
   m_ObjectHideFlags: 0
