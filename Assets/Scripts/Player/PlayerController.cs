@@ -63,20 +63,20 @@ namespace Player
             }
 
             angle *= Mathf.Rad2Deg;
-            angle = Mathf.Clamp(angle, -45, 45);
-            
+            angle = Mathf.Clamp(angle, -70, 70);
+
             Debug.DrawLine(transform.position,
                 transform.position +
                 new Vector3(Mathf.Cos(Mathf.Deg2Rad * angle), Mathf.Sin(Mathf.Deg2Rad * angle), 0),
                 Color.magenta);
 
-            if (Mathf.Abs(angle - prevAngle) > 10)
+            if (Mathf.Abs(angle - prevAngle) > 30 && Mathf.Abs(angle) > 10)
             {
                 angle = Mathf.LerpAngle(prevAngle, angle, 0.01f);
             }
             else
             {
-             prevAngle = angle;
+                prevAngle = angle;
             }
 
 
