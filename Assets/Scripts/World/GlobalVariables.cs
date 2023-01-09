@@ -21,7 +21,7 @@ public class GlobalVariables : MonoBehaviour
 
     public static bool fillingHearts = false;
 
-    public static World world = World.NormalDimention;
+    public static World world = World.OtherDimention;
 
     public static DateTime startTime = DateTime.Now;
 
