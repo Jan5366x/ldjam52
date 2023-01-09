@@ -6,7 +6,7 @@ public class KillZone : MonoBehaviour
     {
         if (col.CompareTag("Player"))
         {
-            GameObject.FindWithTag("MainCamera").GetComponent<GameEventHandler>().OnDeath();
+            col.GetComponent<GameEventHandler>().OnDeath();
         }
     }
 }
