@@ -6,9 +6,15 @@ public class UIManager : MonoBehaviour
 {
     public GameObject soulsPanel;
 
-    public Sprite collectedSprite;
+    public GameObject heartPanel;
+
+    public Sprite soulCollected;
+
+    public Sprite heartCollected;
 
     private readonly List<GameObject> souls = new();
+
+    private readonly List<GameObject> hearts = new();
 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +22,11 @@ public class UIManager : MonoBehaviour
         for (var i = 0; i < soulsPanel.transform.childCount; i++)
         {
             souls.Add(soulsPanel.transform.GetChild(i).gameObject);
+        }
+
+        for (var i = 0; i < soulsPanel.transform.childCount; i++)
+        {
+            hearts.Add(soulsPanel.transform.GetChild(i).gameObject);
         }
     }
 
@@ -27,7 +38,15 @@ public class UIManager : MonoBehaviour
             if (i >= souls.Count) return;
 
             var rawImage = souls[i].GetComponent<Image>();
-            rawImage.sprite = collectedSprite;
+            rawImage.sprite = soulCollected;
+        }
+
+        for (var i = 0; i < GlobalVariables.hearts; i++)
+        {
+            if (i >= hearts.Count) return;
+
+            var rawImage = hearts[i].GetComponent<Image>();
+            rawImage.sprite = heartCollected;
         }
     }
 }

@@ -1542,7 +1542,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soulsPanel: {fileID: 2024247601796449297}
-  collectedSprite: {fileID: -845592248, guid: fe5847bfb938d9c41a0b6d75144954f3, type: 3}
+  heartPanel: {fileID: 5409646934879250261}
+  soulCollected: {fileID: -845592248, guid: fe5847bfb938d9c41a0b6d75144954f3, type: 3}
+  heartCollected: {fileID: 1494923803, guid: fe5847bfb938d9c41a0b6d75144954f3, type: 3}
 --- !u!1 &5409646934879250261
 GameObject:
   m_ObjectHideFlags: 0
