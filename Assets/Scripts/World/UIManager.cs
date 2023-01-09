@@ -10,6 +10,8 @@ public class UIManager : MonoBehaviour
 
     public Sprite soulCollected;
 
+    public Sprite heartEmpty;
+
     public Sprite heartCollected;
 
     private readonly List<GameObject> souls = new();
@@ -44,12 +46,12 @@ public class UIManager : MonoBehaviour
         if (GlobalVariables.fillingHearts ||
             GlobalVariables.world == GlobalVariables.World.NormalDimention)
         {
-            for (var i = 0; i < GlobalVariables.hearts; i++)
+            for (var i = 0; i < GlobalVariables.totalHearts; i++)
             {
                 if (i >= hearts.Count) return;
 
                 var rawImage = hearts[i].GetComponent<Image>();
-                rawImage.sprite = heartCollected;
+                rawImage.sprite = i < GlobalVariables.hearts ? heartCollected : heartEmpty;
             }
         }
     }
