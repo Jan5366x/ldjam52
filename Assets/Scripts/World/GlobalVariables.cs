@@ -34,8 +34,8 @@ public class GlobalVariables : MonoBehaviour
         levelsCompleted = 0;
     }
 
-    public static bool IsLevelCompletedNextLevel() =>
-        soulsCollected >= totalSoulsCollected;
+    public static bool CanLevelBeCompleted() =>
+        soulsCollected >= soulsPerLevel;
 
     public static void NextLevel()
     {

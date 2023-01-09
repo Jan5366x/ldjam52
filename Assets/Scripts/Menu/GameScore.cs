@@ -22,11 +22,6 @@ public class GameScore : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GlobalVariables.SoulPicked();
-        GlobalVariables.SoulPicked();
-        GlobalVariables.NextLevel();
-        GlobalVariables.SoulPicked();
-
         for (var i = 0; i < transform.childCount; i++)
         {
             var child = transform.GetChild(i);

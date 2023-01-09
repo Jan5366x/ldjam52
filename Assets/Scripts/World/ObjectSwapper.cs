@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace World
 {
+    [ExecuteInEditMode]
     public class ObjectSwapper : MonoBehaviour
     {
         public string normalObjectNameContains = "normal";
