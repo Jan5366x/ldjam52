@@ -418,7 +418,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Walking foesn''t hurt.
+  m_text: 'That step is to high to walk over.
 
     Let''s try jumping'
   m_isRightToLeft: 0
