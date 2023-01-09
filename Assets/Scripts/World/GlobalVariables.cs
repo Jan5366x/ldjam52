@@ -46,8 +46,14 @@ public class GlobalVariables : MonoBehaviour
     public static void SoulPicked()
     {
         if (soulsCollected + 1 <= soulsPerLevel)
+        {
             soulsCollected++;
+            totalSoulsCollected++;
+        }
     }
+
+    public static TimeSpan TimeSpent() =>
+        DateTime.Now - startTime;
 
     public enum World
     {
