@@ -25,13 +25,16 @@ namespace Effects
 
             transform.position = new Vector3(_initPosition.x + xDelta, _initPosition.y + yDelta, _initPosition.z);
             var effector = GetComponent<SurfaceEffector2D>();
-            if (effector && direction == MovementDirection.LeftRight)
+            if (effector)
             {
-                effector.speed = Mathf.Cos(Time.time * frequency) * amplifier * frequency * 1.1f;
-            }
-            else
-            {
-                effector.speed = 0;
+                if (direction == MovementDirection.LeftRight)
+                {
+                    effector.speed = Mathf.Cos(Time.time * frequency) * amplifier * frequency * 1.1f;
+                }
+                else
+                {
+                    effector.speed = 0;
+                }
             }
         }
 

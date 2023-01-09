@@ -15,6 +15,8 @@ public class GlobalVariables : MonoBehaviour
 
     public static int levelsCompleted = 0;
 
+    public static int hearts = 0;
+
     public static World world = World.NormalDimention;
 
     public static DateTime startTime = DateTime.Now;
