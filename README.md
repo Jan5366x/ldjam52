@@ -42,6 +42,7 @@ Once you have collected all spirit souls necessary you can offer them an the gre
 * Paint.Net
 * JetBrains Rider
 * Visual Studio
+* Audacity
 
 ## Special Hardware
 
