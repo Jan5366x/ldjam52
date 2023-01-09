@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GlobalVariables : MonoBehaviour
 {
-    public static string lastLevel;
+    public static string lastLevel = "World1";
 
     public static int soulsPerLevel = 9;
 
