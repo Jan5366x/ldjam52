@@ -6,12 +6,18 @@ namespace Actions
 {
     public class FinalHeart : MonoBehaviour
     {
+        public bool triggered = false;
+
         private void OnTriggerEnter2D(Collider2D col)
         {
             if (col.CompareTag("Player"))
             {
-                Debug.Log("Started Finale1");
-                StartCoroutine("Finale");
+                if (!triggered)
+                {
+                    StartCoroutine("Finale");
+                    triggered = true;
+                }
+
             }
         }
 
