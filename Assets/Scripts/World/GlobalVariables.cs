@@ -15,7 +15,7 @@ public class GlobalVariables : MonoBehaviour
 
     public static int levelsCompleted = 0;
 
-    public static int hearts = 1;
+    public static int hearts = 9;
 
     public static bool fillingHearts = false;
 
@@ -36,7 +36,7 @@ public class GlobalVariables : MonoBehaviour
         soulsCollected = 0;
         totalSoulsCollected = 0;
         levelsCompleted = 0;
-        hearts = 1;
+        hearts = 9;
     }
 
     public static bool CanLevelBeCompleted() =>
