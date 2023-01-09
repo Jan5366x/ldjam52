@@ -1544,6 +1544,7 @@ MonoBehaviour:
   soulsPanel: {fileID: 2024247601796449297}
   heartPanel: {fileID: 5409646934879250261}
   soulCollected: {fileID: -845592248, guid: fe5847bfb938d9c41a0b6d75144954f3, type: 3}
+  heartEmpty: {fileID: 45511986, guid: fe5847bfb938d9c41a0b6d75144954f3, type: 3}
   heartCollected: {fileID: -727622296, guid: fe5847bfb938d9c41a0b6d75144954f3, type: 3}
 --- !u!1 &5409646934879250261
 GameObject:
@@ -2135,7 +2136,7 @@ MonoBehaviour:
     That was a long fall!
 
     Why bad things happen
-    to good cats only...'
+    to bestest cats...'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
