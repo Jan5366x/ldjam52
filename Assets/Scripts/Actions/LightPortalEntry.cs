@@ -4,12 +4,9 @@ using UnityEngine;
 
 namespace Actions
 {
-    public class PortalEntry : MonoBehaviour
+    public class LightPortalEntry : MonoBehaviour
     {
-        public GlobalVariables.World nextWorld = GlobalVariables.World.OtherDimention;
-
-        [AllowsNull]
-        public string nextSceneName;
+        private GlobalVariables.World nextWorld = GlobalVariables.World.OtherDimention;
 
         [AllowsNull]
         public GameObject afterEffectPrefab;
@@ -37,23 +34,12 @@ namespace Actions
 
             if ((col.tag?.Equals("player", StringComparison.OrdinalIgnoreCase) ?? false))
             {
-                if (GlobalVariables.IsLevelCompletedNextLevel() && !string.IsNullOrWhiteSpace(nextSceneName))
-                {
-                    Debug.Log($"Level is not completed.");
-                }
-
                 GlobalVariables.world = nextWorld;
                 //Debug.Log($"GlobalVariables.world: {GlobalVariables.world}");
 
                 if (afterEffectPrefab != null)
                     Instantiate(afterEffectPrefab, transform.position, Quaternion.identity);
-                
-                if (!string.IsNullOrWhiteSpace(nextSceneName))
-                {
-                    GameObject.FindWithTag("Player").GetComponent<GameEventHandler>().OnVictory();
-                }
 
-                //Destroy(gameObject);
                 gameObject.SetActive(false);
             }
         }

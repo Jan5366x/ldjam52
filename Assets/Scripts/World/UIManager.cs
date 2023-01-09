@@ -6,6 +6,8 @@ public class UIManager : MonoBehaviour
 {
     public GameObject soulsPanel;
 
+    public Sprite collectedSprite;
+
     private readonly List<GameObject> souls = new();
 
     // Start is called before the first frame update
@@ -22,10 +24,10 @@ public class UIManager : MonoBehaviour
     {
         for (var i = 0; i < GlobalVariables.soulsCollected; i++)
         {
-            if (i >= souls.Count) return;
+            if (i >= souls.Count - 1) return;
 
-            var rawImage = souls[i].GetComponent<RawImage>();
-            rawImage.color = Color.white;
+            var rawImage = souls[i].GetComponent<Image>();
+            rawImage.sprite = collectedSprite;
         }
     }
 }

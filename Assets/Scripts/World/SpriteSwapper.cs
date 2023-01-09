@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace World
 {
+    [ExecuteInEditMode]
     public class SpriteSwapper : MonoBehaviour
     {
         public Sprite normalSprite;
