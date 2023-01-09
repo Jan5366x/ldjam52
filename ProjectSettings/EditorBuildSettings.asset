@@ -24,6 +24,9 @@ EditorBuildSettings:
     path: Assets/Scenes/World3.unity
     guid: aec243042ae9c124aa3db5fc2e9d0533
   - enabled: 1
+    path: Assets/Scenes/World4.unity
+    guid: b6689e0b4c6c09c43b4876acd9c9c630
+  - enabled: 1
     path: Assets/Scenes/TheEnd.unity
     guid: 673c0ab1aadf5a242ba4444f1a79a3b6
   - enabled: 1
@@ -32,7 +35,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WinScene.unity
     guid: 5e9095faae6f7ab4b93b6f4ac5cf1dbc
-  - enabled: 1
-    path: Assets/Scenes/World4.unity
-    guid: b6689e0b4c6c09c43b4876acd9c9c630
   m_configObjects: {}
